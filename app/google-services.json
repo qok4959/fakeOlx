@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "299777957213",
+    "firebase_url": "https://mobileproject-b31db-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "mobileproject-b31db",
     "storage_bucket": "mobileproject-b31db.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "299777957213-us1l6nhf7q10ajrciifj9mlrkvt7fesa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.olx",
+            "certificate_hash": "6151ed4d899729b91dc0c72562dee3dbd6c52946"
+          }
+        },
         {
           "client_id": "299777957213-2mlalghqm410s3g43unbr8acdvcpuq87.apps.googleusercontent.com",
           "client_type": 3

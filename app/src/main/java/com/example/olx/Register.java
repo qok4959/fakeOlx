@@ -3,6 +3,7 @@ package com.example.olx;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -160,6 +161,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                                     Toast.LENGTH_SHORT).show();
 
                             saveToDb();
+                            navigateToUserPanelActivity();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("accountCreationStatus:", "createUserWithEmail:failure", task.getException());
@@ -168,6 +170,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                         }
                     }
                 });
+    }
+
+
+    void navigateToUserPanelActivity(){
+        finish();
+        Intent intent = new Intent(Register.this, UserPanel.class);
+        startActivity(intent);
     }
 
     public void testDisplay(){

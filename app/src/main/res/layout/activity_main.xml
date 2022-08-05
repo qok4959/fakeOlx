@@ -13,7 +13,7 @@
         android:layout_marginTop="140dp"
         android:text="It's not the OLX"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="	#00FFFF"
+        android:textColor="@color/secondaryColor"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -72,13 +72,15 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <Button
-        android:textStyle="bold"
-        android:textSize="20dp"
         android:id="@+id/buttonLogin"
         android:layout_width="330dp"
         android:layout_height="50dp"
         android:layout_marginTop="36dp"
+        android:backgroundTint="@color/secondaryColor"
         android:text="login"
+        android:textSize="20dp"
+        android:textColor="@color/fourthColor"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />

@@ -45,7 +45,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView register;
+    private TextView register, forgotPassword;
     String email, password;
     EditText editTxtEmail, editTxtPassword;
     Button btnLogin;
@@ -62,14 +62,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
         register = findViewById(R.id.textViewRegister);
-
         editTxtEmail = findViewById(R.id.editTextEmailAddress);
         editTxtPassword = findViewById(R.id.editTextPassword);
+        forgotPassword = findViewById(R.id.textViewForgot);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
@@ -98,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Register.class));
             }
         });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ForgotPassword.class));
+            }
+        });
     }
 
 
@@ -116,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 task.getResult(ApiException.class);
-                navigateToSecondActivity();
+                navigateToUserPanelActivity();
             } catch (ApiException e) {
                 Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_SHORT).show();
             }
@@ -124,13 +129,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    void navigateToSecondActivity(){
+    void navigateToUserPanelActivity(){
         finish();
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        Intent intent = new Intent(MainActivity.this, UserPanel.class);
         startActivity(intent);
     }
-
 
     public void login(FirebaseAuth mAuth){
         email = editTxtEmail.getText().toString().trim();
@@ -146,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(MainActivity.this, "Authentication passed.",
                                     Toast.LENGTH_SHORT).show();
+                            navigateToUserPanelActivity();
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("signingLog", "signInWithEmail:failure", task.getException());
@@ -155,7 +160,4 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 }

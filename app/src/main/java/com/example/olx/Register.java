@@ -54,26 +54,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     }
 
 
-    public void login(){
-        mAuth.signInWithEmailAndPassword(tempEmail, tempPswd2)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("signingLog", "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(Register.this, "Authentication passed.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("signingLog", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(Register.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
+
 
 
     public void saveToDb(){

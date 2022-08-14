@@ -24,6 +24,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -62,9 +63,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
         // Create a new user with a first, middle, and last name
         Map<String, Object> user = new HashMap<>();
-        user.put("name", tempName );
-        user.put("surname", tempSurname);
-        user.put("email", tempEmail);
+        user.put("name", capitalize(tempName.toLowerCase()));
+        user.put("surname", capitalize(tempSurname.toLowerCase()));
+        user.put("email", tempEmail.toLowerCase());
         user.put("phoneNumber", tempNumber);
 
 
@@ -198,5 +199,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
         }
+    }
+
+
+    public static String capitalize(String str)
+    {
+        if(str == null || str.length()<=1) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 }

@@ -29,9 +29,6 @@
             android:name=".UserPanel"
             android:exported="false" />
         <activity
-            android:name=".SecondActivity"
-            android:exported="false" />
-        <activity
             android:name=".Register"
             android:exported="false" />
         <activity

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.olx.fragments.FragmentNavigation;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Edit extends AppCompatActivity {
@@ -24,6 +25,13 @@ public class Edit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.fragment_container_view, FragmentNavigation.class, null)
+                    .commit();
+        }
 
         editTxtEmail = findViewById(R.id.emailEditTxtChangePswd);
         mAuth = FirebaseAuth.getInstance();

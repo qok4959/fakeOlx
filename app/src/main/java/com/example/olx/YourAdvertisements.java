@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 import com.example.olx.fragments.FragmentNavigation;
 
-public class AddAdvertisement extends AppCompatActivity {
+public class YourAdvertisements extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_advertisement);
+        setContentView(R.layout.activity_your_avertisements);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -19,6 +19,5 @@ public class AddAdvertisement extends AppCompatActivity {
                     .add(R.id.fragment_container_view, FragmentNavigation.class, null)
                     .commit();
         }
-
     }
 }

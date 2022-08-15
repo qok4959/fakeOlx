@@ -10,18 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.olx.fragments.FragmentNavigation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserPanel extends AppCompatActivity {
 
@@ -36,6 +32,13 @@ public class UserPanel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_panel);
 
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.fragment_container_view, FragmentNavigation.class, null)
+                    .commit();
+        }
 
         nameTxtView = findViewById(R.id.nameTxtView);
         btnAddAdvertisement = findViewById(R.id.btnAddAdvertisement);
@@ -83,7 +86,7 @@ public class UserPanel extends AppCompatActivity {
         btnYourAdvertisement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserPanel.this, YourAvertisements.class));
+                startActivity(new Intent(UserPanel.this, YourAdvertisements.class));
             }
         });
 

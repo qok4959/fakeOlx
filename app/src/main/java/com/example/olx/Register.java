@@ -3,6 +3,7 @@ package com.example.olx;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -54,35 +56,16 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     }
 
 
-    public void login(){
-        mAuth.signInWithEmailAndPassword(tempEmail, tempPswd2)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("signingLog", "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(Register.this, "Authentication passed.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("signingLog", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(Register.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
+
 
 
     public void saveToDb(){
 
         // Create a new user with a first, middle, and last name
         Map<String, Object> user = new HashMap<>();
-        user.put("name", tempName );
-        user.put("surname", tempSurname);
-        user.put("email", tempEmail);
+        user.put("name", capitalize(tempName.toLowerCase()));
+        user.put("surname", capitalize(tempSurname.toLowerCase()));
+        user.put("email", tempEmail.toLowerCase());
         user.put("phoneNumber", tempNumber);
 
 
@@ -179,6 +162,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                                     Toast.LENGTH_SHORT).show();
 
                             saveToDb();
+                            navigateToUserPanelActivity();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("accountCreationStatus:", "createUserWithEmail:failure", task.getException());
@@ -187,6 +171,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                         }
                     }
                 });
+    }
+
+
+    void navigateToUserPanelActivity(){
+        finish();
+        Intent intent = new Intent(Register.this, UserPanel.class);
+        startActivity(intent);
     }
 
     public void testDisplay(){
@@ -208,5 +199,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
         }
+    }
+
+
+    public static String capitalize(String str)
+    {
+        if(str == null || str.length()<=1) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 }

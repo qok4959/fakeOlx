@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,12 +43,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    private TextView register;
+    private TextView register, forgotPassword;
+    String email, password;
+    EditText editTxtEmail, editTxtPassword;
+    Button btnLogin;
+
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     ImageView googleBtn;
+
+    FirebaseAuth mAuth;
 
 
     @Override
@@ -52,22 +62,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
         register = findViewById(R.id.textViewRegister);
-        register.setOnClickListener(this);
+        editTxtEmail = findViewById(R.id.editTextEmailAddress);
+        editTxtPassword = findViewById(R.id.editTextPassword);
+        forgotPassword = findViewById(R.id.textViewForgot);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
         googleBtn = findViewById(R.id.googleImageView);
+        btnLogin = findViewById(R.id.buttonLogin);
 
+        mAuth =  FirebaseAuth.getInstance();
 
         googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signIn();
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login(mAuth);
+            }
+        });
+//
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Register.class));
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ForgotPassword.class));
             }
         });
     }
@@ -88,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             try {
                 task.getResult(ApiException.class);
-                navigateToSecondActivity();
+                navigateToUserPanelActivity();
             } catch (ApiException e) {
                 Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_SHORT).show();
             }
@@ -96,20 +129,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-    void navigateToSecondActivity(){
+    void navigateToUserPanelActivity(){
         finish();
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        Intent intent = new Intent(MainActivity.this, UserPanel.class);
         startActivity(intent);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch(view.getId()){
-            case R.id.textViewRegister:
-                startActivity(new Intent(this, Register.class));
-                break;
-        }
-    }
+    public void login(FirebaseAuth mAuth){
+        email = editTxtEmail.getText().toString().trim();
+        password = editTxtPassword.getText().toString().trim();
+        Log.d("emailPassword:", email + "\t" + password);
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("signingLog", "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(MainActivity.this, "Authentication passed.",
+                                    Toast.LENGTH_SHORT).show();
+                            navigateToUserPanelActivity();
 
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("signingLog", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 }

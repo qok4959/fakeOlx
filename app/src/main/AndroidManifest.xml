@@ -14,10 +14,13 @@
         android:theme="@style/Theme.Olx"
         tools:targetApi="31">
         <activity
+            android:name=".Favorite"
+            android:exported="false" />
+        <activity
             android:name=".Edit"
             android:exported="false" />
         <activity
-            android:name=".YourAvertisements"
+            android:name=".YourAdvertisements"
             android:exported="false" />
         <activity
             android:name=".AddAdvertisement"

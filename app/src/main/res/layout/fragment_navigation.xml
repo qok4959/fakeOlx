@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:backgroundTint="@color/secondaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="BottomAppBar" />
+
+    <ImageView
+        android:id="@+id/imgViewHome"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        app:tint="@color/fourthColor"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:srcCompat="@drawable/home" />
+
+    <ImageView
+        android:id="@+id/imgViewFavorite"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="0dp"
+        app:tint="@color/fourthColor"
+        app:layout_constraintStart_toEndOf="@+id/imgViewHome"
+        app:layout_constraintTop_toTopOf="@+id/imgViewHome"
+        app:srcCompat="@drawable/favorite" />
+
+    <ImageView
+        android:id="@+id/imgViewProfile"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="52dp"
+        app:tint="@color/fourthColor"
+        app:layout_constraintStart_toEndOf="@+id/imgViewAdd"
+        app:layout_constraintTop_toTopOf="@+id/imgViewAdd"
+        app:srcCompat="@drawable/profile" />
+
+    <ImageView
+        android:id="@+id/imgViewAdd"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="52dp"
+        app:tint="@color/fourthColor"
+        app:layout_constraintStart_toEndOf="@+id/imgViewFavorite"
+        app:layout_constraintTop_toTopOf="@+id/imgViewFavorite"
+        app:srcCompat="@drawable/add2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

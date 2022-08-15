@@ -4,10 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,25 +22,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView register, forgotPassword;
     String email, password;
     EditText editTxtEmail, editTxtPassword;
+    TextView forgotPswdEditTxt;
+
     Button btnLogin;
 
     GoogleSignInOptions gso;
@@ -76,6 +64,18 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth =  FirebaseAuth.getInstance();
 
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                email = editTxtEmail.getText().toString().trim().toLowerCase();
+                if (emailValidation()){
+                    mAuth.sendPasswordResetEmail(email);
+                    Toast.makeText(getApplicationContext(), "email with password reset form has been sent", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,12 +97,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ForgotPassword.class));
-            }
-        });
     }
 
 
@@ -136,28 +130,79 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(FirebaseAuth mAuth){
-        email = editTxtEmail.getText().toString().trim();
-        password = editTxtPassword.getText().toString().trim();
-        Log.d("emailPassword:", email + "\t" + password);
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("signingLog", "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(MainActivity.this, "Authentication passed.",
-                                    Toast.LENGTH_SHORT).show();
-                            navigateToUserPanelActivity();
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("signingLog", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+        if (validate()){
+            email = editTxtEmail.getText().toString().trim().toLowerCase();
+            password = editTxtPassword.getText().toString().trim();
+            Log.d("emailPassword:", email + "\t" + password);
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d("signingLog", "signInWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Toast.makeText(MainActivity.this, "Authentication passed.",
+                                        Toast.LENGTH_SHORT).show();
+                                navigateToUserPanelActivity();
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("signingLog", "signInWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }
+    }
+
+
+    public boolean emailValidation() {
+
+        email = editTxtEmail.getText().toString().trim().toLowerCase();
+        if (email.isEmpty()) {
+            editTxtEmail.setError("email cannot be empty");
+            editTxtEmail.requestFocus();
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTxtEmail.setError("Please provide a valid email");
+            editTxtEmail.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    public boolean passwordValidation(){
+
+        password = editTxtPassword.getText().toString().trim();
+
+        if (password.isEmpty()) {
+            editTxtPassword.setError("password cannot be empty");
+            editTxtPassword.requestFocus();
+            return false;
+        }
+
+        if (password.length() < 8) {
+            editTxtPassword.setError("password must have >=8 characters");
+            editTxtPassword.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+
+    public boolean validate(){
+        if (emailValidation()){
+            if (passwordValidation()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

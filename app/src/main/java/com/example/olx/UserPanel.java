@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class UserPanel extends AppCompatActivity {
 
-    Button btnAddAdvertisement, btnYourAdvertisement, btnLogout;
+    Button btnAddAdvertisement, btnYourAdvertisement, btnLogout, btnEditProfile;
     TextView nameTxtView;
     FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -41,6 +41,7 @@ public class UserPanel extends AppCompatActivity {
         btnAddAdvertisement = findViewById(R.id.btnAddAdvertisement);
         btnYourAdvertisement = findViewById(R.id.btnMyAdvertisements);
         btnLogout = findViewById(R.id.btnLogout);
+        btnEditProfile = findViewById(R.id.btnEditProfile);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -65,6 +66,12 @@ public class UserPanel extends AppCompatActivity {
                 });
 
 
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(UserPanel.this, Edit.class));
+            }
+        });
 
         btnAddAdvertisement.setOnClickListener(new View.OnClickListener() {
             @Override

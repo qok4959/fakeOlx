@@ -7,22 +7,126 @@
     tools:context=".AddAdvertisement">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-186dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="350dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="28dp"
+                android:text="Add advertisement"
+                android:textAlignment="center"
+                android:textColor="@color/secondaryColor"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgViewAddPhoto"
+                android:layout_marginTop="36dp"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/photo" />
+
+            <EditText
+                android:id="@+id/editTxtTitle"
+                android:layout_width="330dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/fifthColor"
+                android:ems="10"
+                android:hint="name"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                tools:ignore="TouchTargetSizeCheck"
+
+                />
+
+            <EditText
+                android:id="@+id/editTxtCategory"
+                android:layout_width="332dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/fifthColor"
+                android:ems="10"
+                android:hint="i.e toyota yaris 2008 1.2 75km"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/editTxtDescription"
+                android:layout_width="330dp"
+                android:layout_height="183dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/fifthColor"
+                android:ems="10"
+                android:gravity="start"
+                android:hint="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                android:inputType="textMultiLine"
+                android:singleLine="false"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+            <EditText
+                android:id="@+id/editTxtNumber"
+                android:layout_width="330dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/fifthColor"
+                android:ems="10"
+                android:hint="phone number"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                tools:ignore="TouchTargetSizeCheck"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTxtDescription"
+                />
+
+            <Button
+                android:id="@+id/btnAddAdvertisement"
+                android:layout_width="330dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="36dp"
+                android:text="add"
+                android:textColor="@color/fourthColor"
+                android:backgroundTint="@color/secondaryColor"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTxtNumbe" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
     <androidx.fragment.app.FragmentContainerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fragment_container_view"
+        android:name="com.example.olx.fragments.FragmentNavigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.olx.fragments.FragmentNavigation" />
+        tools:layout_editor_absoluteY="745dp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:text="Add Advertisement"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fragment_container_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

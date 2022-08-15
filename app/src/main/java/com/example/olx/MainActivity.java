@@ -115,7 +115,10 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 task.getResult(ApiException.class);
-                navigateToUserPanelActivity();
+//                navigateToUserPanelActivity();
+                finish();
+                Intent intent = new Intent(MainActivity.this, Register.class);
+                startActivity(intent);
             } catch (ApiException e) {
                 Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_SHORT).show();
             }

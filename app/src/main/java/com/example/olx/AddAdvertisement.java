@@ -19,6 +19,5 @@ public class AddAdvertisement extends AppCompatActivity {
                     .add(R.id.fragment_container_view, FragmentNavigation.class, null)
                     .commit();
         }
-
     }
 }

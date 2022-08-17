@@ -7,12 +7,21 @@
     tools:context=".AddAdvertisement">
 
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:name="com.example.olx.fragments.FragmentNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="714dp" />
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="600dp"
         tools:ignore="SpeakableTextPresentCheck"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-186dp">
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="-218dp">
 
 
         <LinearLayout
@@ -20,7 +29,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
-
 
 
             <TextView
@@ -36,13 +44,13 @@
 
             <ImageView
                 android:id="@+id/imgViewAddPhoto"
-                android:layout_marginTop="36dp"
-                android:layout_width="300dp"
+                android:layout_width="450dp"
                 android:layout_height="200dp"
+                android:layout_marginTop="36dp"
                 app:srcCompat="@drawable/photo" />
 
             <EditText
-                android:id="@+id/editTxtTitle"
+                android:id="@+id/editTxtAddName"
                 android:layout_width="330dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="50dp"
@@ -57,20 +65,20 @@
                 />
 
             <EditText
-                android:id="@+id/editTxtCategory"
+                android:id="@+id/editTxtAddTitle"
                 android:layout_width="332dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="36dp"
                 android:background="@drawable/border"
                 android:backgroundTint="@color/fifthColor"
                 android:ems="10"
-                android:hint="i.e toyota yaris 2008 1.2 75km"
+                android:hint="title   i.e toyota yaris 2008 1.2 75km"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
-                android:id="@+id/editTxtDescription"
+                android:id="@+id/editTxtAddDescription"
                 android:layout_width="330dp"
                 android:layout_height="183dp"
                 android:layout_marginTop="36dp"
@@ -87,7 +95,7 @@
 
 
             <EditText
-                android:id="@+id/editTxtNumber"
+                android:id="@+id/editTxtAddPhoneNumber"
                 android:layout_width="330dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="36dp"
@@ -97,20 +105,19 @@
                 android:hint="phone number"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
-                tools:ignore="TouchTargetSizeCheck"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTxtDescription"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/editTxtAddDescription"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <Button
                 android:id="@+id/btnAddAdvertisement"
                 android:layout_width="330dp"
                 android:layout_height="65dp"
                 android:layout_marginTop="36dp"
+                android:backgroundTint="@color/secondaryColor"
                 android:text="add"
                 android:textColor="@color/fourthColor"
-                android:backgroundTint="@color/secondaryColor"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -120,13 +127,6 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_view"
-        android:name="com.example.olx.fragments.FragmentNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteY="745dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

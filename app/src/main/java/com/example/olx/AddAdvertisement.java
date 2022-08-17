@@ -28,10 +28,10 @@ public class AddAdvertisement extends AppCompatActivity {
 
     FirebaseFirestore db;
     FirebaseAuth mAuth;
-    Button btnAddAdvertisement, btnAddLink;
-    EditText title, description, name, phoneNumber, link;
+    Button btnAddAdvertisement;
+    EditText title, description, name, phoneNumber, price;
     ImageView img;
-    String strTitle, strDescription, strName, strPhoneNumber;
+    String strTitle, strDescription, strName, strPhoneNumber, strPrice;
 
     Map<String, Object> advertisement;
     ArrayList<String> imgLinks;
@@ -61,8 +61,7 @@ public class AddAdvertisement extends AppCompatActivity {
         description = findViewById(R.id.editTxtAddTitle);
         name = findViewById(R.id.editTxtAddName);
         phoneNumber = findViewById(R.id.editTxtAddPhoneNumber);
-
-
+        price = findViewById(R.id.editTxtPrice);
 
 
         db = FirebaseFirestore.getInstance();
@@ -98,18 +97,8 @@ public class AddAdvertisement extends AppCompatActivity {
         strDescription = description.getText().toString().trim().toLowerCase();
         strName = name.getText().toString().trim().toLowerCase();
         strPhoneNumber = phoneNumber.getText().toString().trim().toLowerCase();
+        strPrice = price.getText().toString().trim();
 
-        if (strTitle.isEmpty()) {
-            title.setError("title. cannot be empty");
-            title.requestFocus();
-            return false;
-        }
-
-        if (strDescription.isEmpty()) {
-            description.setError("description. cannot be empty");
-            description.requestFocus();
-            return false;
-        }
 
         if (strName.isEmpty()) {
             name.setError("name. cannot be empty");
@@ -117,9 +106,27 @@ public class AddAdvertisement extends AppCompatActivity {
             return false;
         }
 
-        if (strPhoneNumber.isEmpty()) {
+        else if (strTitle.isEmpty()) {
+            title.setError("title. cannot be empty");
+            title.requestFocus();
+            return false;
+        }
+
+        else if (strDescription.isEmpty()) {
+            description.setError("description. cannot be empty");
+            description.requestFocus();
+            return false;
+        }
+
+        else if (strPhoneNumber.isEmpty()) {
             phoneNumber.setError("phoneNumber cannot be empty");
             phoneNumber.requestFocus();
+            return false;
+        }
+
+        else if (strPrice.isEmpty()) {
+            price.setError("phoneNumber cannot be empty");
+            price.requestFocus();
             return false;
         }
 
@@ -135,6 +142,8 @@ public class AddAdvertisement extends AppCompatActivity {
         advertisement.put("title", strTitle);
         advertisement.put("links", imgLinks);
         advertisement.put("email", mAuth.getCurrentUser().getEmail().toString());
+        advertisement.put("price", strPrice);
+
 
 
         // Add a new document with a generated ID

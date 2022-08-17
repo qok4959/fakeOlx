@@ -66,9 +66,6 @@ public class AddImage extends AppCompatActivity {
                     recyclerView.setLayoutManager(linearLayoutManager);
                     CustomAdapter customAdapter = new CustomAdapter((ArrayList<String>)imgLinks, AddImage.this);
                     recyclerView.setAdapter(customAdapter);
-
-
-
                 }
             }
         });

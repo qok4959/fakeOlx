@@ -126,6 +126,29 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTxtAddPhoneNumber"
                 tools:ignore="TouchTargetSizeCheck" />
 
+
+            <Spinner
+                android:id="@+id/spinnerCategories"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                app:layout_constraintTop_toBottomOf="@+id/editTxtPrice"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Spinner
+                android:id="@+id/spinnerLocation"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerCategories"
+                tools:ignore="SpeakableTextPresentCheck"
+                />
+
+
             <Button
                 android:id="@+id/btnAddAdvertisement"
                 android:layout_width="330dp"
@@ -138,7 +161,8 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price" />
+                app:layout_constraintTop_toBottomOf="@+id/spinnerLocation"
+               />
 
 
         </LinearLayout>

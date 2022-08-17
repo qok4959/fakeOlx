@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.olx.fragments.FragmentNavigation;
@@ -32,9 +34,11 @@ public class AddAdvertisement extends AppCompatActivity {
     EditText title, description, name, phoneNumber, price;
     ImageView img;
     String strTitle, strDescription, strName, strPhoneNumber, strPrice;
+    Spinner dropdownCategories, dropdownLocations;
 
     Map<String, Object> advertisement;
     ArrayList<String> imgLinks;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +54,6 @@ public class AddAdvertisement extends AppCompatActivity {
         advertisement = new HashMap<>();
         imgLinks = new ArrayList<>();
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            imgLinks=extras.getStringArrayList("list");
-        }
-
         img = findViewById(R.id.imgViewAddPhoto);
         btnAddAdvertisement = findViewById(R.id.btnAddAdvertisement);
         title = findViewById(R.id.editTxtAddTitle);
@@ -62,10 +61,29 @@ public class AddAdvertisement extends AppCompatActivity {
         name = findViewById(R.id.editTxtAddName);
         phoneNumber = findViewById(R.id.editTxtAddPhoneNumber);
         price = findViewById(R.id.editTxtPrice);
+        dropdownCategories = findViewById(R.id.spinnerCategories);
+        dropdownLocations = findViewById(R.id.spinnerLocation);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            imgLinks=extras.getStringArrayList("list");
+        }
 
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
+
+        String[] categories = new String[]{"Automotive", "Electronics", "Furniture", "Services", "Jobs", "Fashion", "Music", "Real estate", "Animals"};
+        String[] locations = new String[]{"dolnośląskie","kujawsko-pomorskie","lubelskie","lubuskie","łódzkie","małopolskie","mazowieckie","opolskie","podkarpackie","podlaskie","pomorskie","śląskie","świętokrzyskie","warmińsko-mazurskie","wielkopolskie","zachodniopomorskie"};
+
+        ArrayAdapter<String> adapterCategories = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
+        dropdownCategories.setAdapter(adapterCategories);
+
+
+        ArrayAdapter<String> adapterLocations = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, locations);
+        dropdownLocations.setAdapter(adapterLocations);
+
 
 
         img.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +161,8 @@ public class AddAdvertisement extends AppCompatActivity {
         advertisement.put("links", imgLinks);
         advertisement.put("email", mAuth.getCurrentUser().getEmail().toString());
         advertisement.put("price", strPrice);
+        advertisement.put("category", dropdownCategories.getSelectedItem().toString());
+        advertisement.put("location", dropdownLocations.getSelectedItem().toString());
 
 
 

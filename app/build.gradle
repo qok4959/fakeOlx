@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 
 }
 
@@ -32,6 +33,7 @@ android {
 
 dependencies {
 
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
     def fragment_version = "1.5.2"
 
     implementation 'com.google.android.gms:play-services-auth:20.2.0'

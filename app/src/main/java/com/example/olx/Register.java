@@ -57,10 +57,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
 
 
-
-
     public void saveToDb(){
-
         // Create a new user with a first, middle, and last name
         Map<String, Object> user = new HashMap<>();
         user.put("name", capitalize(tempName.toLowerCase()));

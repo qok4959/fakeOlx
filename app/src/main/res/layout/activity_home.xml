@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".advertisement.YourAdvertisements">
+    tools:context=".Home">
+
 
     <androidx.fragment.app.FragmentContainerView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,5 +13,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.example.olx.fragments.FragmentNavigation" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

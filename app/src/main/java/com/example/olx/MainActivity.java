@@ -16,6 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.olx.advertisement.AdvertisementDetails;
+import com.example.olx.profile.Register;
+import com.example.olx.profile.UserPanel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -97,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //test
+        startActivity(new Intent(getApplicationContext(), AdvertisementDetails.class));
     }
 
 

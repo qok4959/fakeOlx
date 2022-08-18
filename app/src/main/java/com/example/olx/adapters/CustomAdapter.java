@@ -1,4 +1,4 @@
-package com.example.olx.Adapters;
+package com.example.olx.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

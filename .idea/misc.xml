@@ -10,16 +10,21 @@
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.385" />
         <entry key="app/src/main/res/layout/activity_add_advertisement.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_add_image.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_advertisement_details.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_edit.xml" value="0.264" />
-        <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_filters.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_popup_image2.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_user_panel.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_your_avertisements.xml" value="0.38177083333333334" />
+        <entry key="app/src/main/res/layout/each_advertisement.xml" value="0.31927083333333334" />
         <entry key="app/src/main/res/layout/fragment_bottom_navigation.xml" value="0.2722222222222222" />
+        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/fragment_item_list_dialog_list_dialog.xml" value="0.2722222222222222" />
         <entry key="app/src/main/res/layout/fragment_item_list_dialog_list_dialog_item.xml" value="0.2722222222222222" />
         <entry key="app/src/main/res/layout/fragment_navigation.xml" value="0.264" />

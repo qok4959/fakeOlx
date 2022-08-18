@@ -1,4 +1,4 @@
-package com.example.olx;
+package com.example.olx.advertisement;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.olx.Adapters.CustomAdapter;
+import com.example.olx.adapters.CustomAdapter;
+import com.example.olx.R;
 
 import java.util.ArrayList;
 

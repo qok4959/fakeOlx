@@ -4,13 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".YourAdvertisements">
+    tools:context=".advertisement.YourAdvertisements">
 
     <androidx.fragment.app.FragmentContainerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fragment_container_view"
+        android:name="com.example.olx.fragments.FragmentNavigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.olx.fragments.FragmentNavigation" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/buttonTestAdvertisement"
+        android:layout_width="330dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:text="show my advertisements"
+        android:textColor="@color/fourthColor"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/recyclerViewYourAdvertisement"
+        android:layout_width="390dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

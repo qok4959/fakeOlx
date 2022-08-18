@@ -1,4 +1,4 @@
-package com.example.olx;
+package com.example.olx.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.olx.MainActivity;
+import com.example.olx.R;
 import com.example.olx.fragments.FragmentNavigation;
 import com.google.firebase.auth.FirebaseAuth;
 

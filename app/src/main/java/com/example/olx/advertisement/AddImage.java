@@ -1,4 +1,4 @@
-package com.example.olx;
+package com.example.olx.advertisement;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.olx.Adapters.CustomAdapter;
+import com.example.olx.adapters.TextAdapter;
+import com.example.olx.R;
 
 import java.util.ArrayList;
 
@@ -41,7 +42,7 @@ public class AddImage extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        CustomAdapter customAdapter = new CustomAdapter((ArrayList<String>)imgLinks, AddImage.this);
+        TextAdapter customAdapter = new TextAdapter((ArrayList<String>)imgLinks, AddImage.this);
         recyclerView.setAdapter(customAdapter);
 
 
@@ -64,7 +65,7 @@ public class AddImage extends AppCompatActivity {
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
-                    CustomAdapter customAdapter = new CustomAdapter((ArrayList<String>)imgLinks, AddImage.this);
+                    TextAdapter customAdapter = new TextAdapter((ArrayList<String>)imgLinks, AddImage.this);
                     recyclerView.setAdapter(customAdapter);
                 }
             }

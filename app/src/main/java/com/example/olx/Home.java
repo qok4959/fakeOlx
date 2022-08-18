@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 import com.example.olx.fragments.FragmentNavigation;
 
-public class Favorite extends AppCompatActivity {
+public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorite);
+        setContentView(R.layout.activity_home);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -20,4 +20,7 @@ public class Favorite extends AppCompatActivity {
                     .commit();
         }
     }
+
+
+
 }

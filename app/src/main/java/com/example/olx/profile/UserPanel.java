@@ -1,4 +1,4 @@
-package com.example.olx;
+package com.example.olx.profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.olx.MainActivity;
+import com.example.olx.R;
+import com.example.olx.advertisement.AddAdvertisement;
+import com.example.olx.advertisement.YourAdvertisements;
 import com.example.olx.fragments.FragmentNavigation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

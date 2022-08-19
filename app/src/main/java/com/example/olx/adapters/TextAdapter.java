@@ -1,4 +1,4 @@
-package com.example.olx.Adapters;
+package com.example.olx.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,16 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.olx.R;
+import com.example.olx.usefulClasses.AdvertisementData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter{
+public class TextAdapter extends RecyclerView.Adapter{
 
     List links;
     Context context;
 
-    public CustomAdapter(ArrayList<String> list, Context context2){
+    public TextAdapter(ArrayList<String> list, Context context2){
         links=list;
         context=context2;
     }
@@ -57,6 +58,8 @@ public class CustomAdapter extends RecyclerView.Adapter{
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView link;
+
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

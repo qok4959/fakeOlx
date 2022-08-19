@@ -7,15 +7,13 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.olx.AddAdvertisement;
-import com.example.olx.Favorite;
+import com.example.olx.advertisement.AddAdvertisement;
+import com.example.olx.advertisement.Favorite;
+import com.example.olx.Home;
 import com.example.olx.R;
-import com.example.olx.Register;
-import com.example.olx.UserPanel;
-import com.example.olx.YourAdvertisements;
+import com.example.olx.profile.UserPanel;
 
 public class FragmentNavigation extends Fragment {
     ImageView home, favorite,add,profile;
@@ -36,7 +34,7 @@ public class FragmentNavigation extends Fragment {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), YourAdvertisements.class));
+                startActivity(new Intent(getActivity(), Home.class));
             }
         });
 

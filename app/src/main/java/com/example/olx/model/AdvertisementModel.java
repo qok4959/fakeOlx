@@ -36,12 +36,6 @@ public class AdvertisementModel {
         email = mAuth.getCurrentUser().getEmail().toString();
         data = new ArrayList<Map<String,Object>>();
        retrieveData();
-
-//       while (data.size()<1) {
-////           Log.d("loggingEnd", "waiting...");
-//       }
-//       Log.d("loggingEnd", String.valueOf(data.size()));
-
     }
 
 
@@ -56,12 +50,15 @@ public class AdvertisementModel {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                data.add(document.getData());
+                                HashMap<String,Object> tempHashMap = new HashMap<>();
+
+                                tempHashMap = (HashMap<String, Object>) document.getData();
+                                tempHashMap.put("id", document.getId());
+                                data.add(tempHashMap);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-
                     }
                 });
     }

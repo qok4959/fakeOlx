@@ -16,6 +16,7 @@ import com.example.olx.adapters.TextAdapter;
 import com.example.olx.fragments.FragmentNavigation;
 import com.example.olx.model.AdvertisementModel;
 import com.example.olx.usefulClasses.AdvertisementData;
+import com.example.olx.usefulClasses.AndroidPacket;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -45,6 +46,7 @@ public class YourAdvertisements extends AppCompatActivity {
         ArrayList<AdvertisementData> advertisementData = new ArrayList<>();
         Button buttonTestAdvertisement = (findViewById(R.id.buttonTestAdvertisement));
 
+
         buttonTestAdvertisement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +61,6 @@ public class YourAdvertisements extends AppCompatActivity {
                 recyclerView.setAdapter(customAdapter);
 
                 buttonTestAdvertisement.setVisibility(View.GONE);
-//                Log.d(TAG, String.valueOf(model.getData().getOrDefault("description","default").toString()));
             }
         });
 //        Log.d(TAG, model.getData().get(0).toString());

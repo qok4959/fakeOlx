@@ -2,6 +2,8 @@ package com.example.olx.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.olx.R;
+import com.example.olx.advertisement.AdvertisementDetails;
 import com.example.olx.usefulClasses.AdvertisementData;
+import com.example.olx.usefulClasses.AndroidPacket;
 
 import java.util.ArrayList;
 
@@ -50,12 +54,26 @@ public class AdvertisementAdapter extends RecyclerView.Adapter {
             arrData.get(position).getLinks().add(tempLink);
         Glide.with(context).load(arrData.get(position).getLinks().get(0)).into(myViewHolder.img);
 //        myViewHolder.itemView.set
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),
-                        arrData.get(position).getCategory(),
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(view.getContext(),
+//                        arrData.get(position).getCategory(),
+//                        Toast.LENGTH_LONG).show();
+
+                Intent i = new Intent(context, AdvertisementDetails.class);
+
+                AndroidPacket androidPacket = new AndroidPacket(arrData.get(position));
+                String objAsJson = androidPacket.toJson();
+                i.putExtra("my_obj", objAsJson);
+
+
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("list", arrData);
+//                i.putExtras(bundle);
+                context.startActivity(i);
             }
         });
     }

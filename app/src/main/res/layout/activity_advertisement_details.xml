@@ -14,26 +14,139 @@
         android:layout_height="match_parent"
         android:name="com.example.olx.fragments.FragmentNavigation" />
 
-    <ImageView
-        android:id="@+id/imageViewDetails"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAdvertisementDetails"
+        android:layout_width="412dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewAdvertisementDetailsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginStart="16dp"
+        android:text="TitleContent"
+
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/labelTItle"
+        app:layout_constraintTop_toTopOf="@+id/labelTItle" />
+
+    <TextView
+        android:id="@+id/textViewAdvertisementDetailsDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="DescriptionContent"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/labelDescription"
+        app:layout_constraintTop_toBottomOf="@+id/labelDescription" />
+
+
+    <TextView
+        android:id="@+id/labelContactDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="ContactDetails:"
+        android:textColor="@color/secondaryColor"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/labelLocation"
+        app:layout_constraintTop_toBottomOf="@+id/labelLocation" />
+
+    <TextView
+        android:id="@+id/textViewAllContactDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="ContactDetailsContent"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/labelContactDetails"
+        app:layout_constraintTop_toBottomOf="@+id/labelContactDetails" />
+
+
+    <TextView
+        android:id="@+id/labelLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Location:"
+        android:textColor="@color/secondaryColor"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textViewAdvertisementDetailsDescription"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAdvertisementDetailsDescription" />
+
+    <TextView
+        android:id="@+id/textViewAdvertisementDetailsLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Location:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/labelLocation"
+        app:layout_constraintTop_toTopOf="@+id/labelLocation" />
+
+    <TextView
+        android:id="@+id/labelDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Description:"
+        android:textColor="@color/secondaryColor"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/labelPrice"
+        app:layout_constraintTop_toBottomOf="@+id/labelPrice" />
+
+    <TextView
+        android:id="@+id/textViewAdvertisementDetailsPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="PriceContent"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/labelPrice"
+        app:layout_constraintTop_toTopOf="@+id/labelPrice" />
+
+    <TextView
+        android:id="@+id/labelPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Price:"
+        android:textColor="@color/secondaryColor"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/labelTItle"
+        app:layout_constraintTop_toBottomOf="@+id/labelTItle" />
+
+    <TextView
+        android:id="@+id/labelTItle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="32dp"
+        android:text="Title:"
+        android:textColor="@color/secondaryColor"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewDetails" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewAdvertisementDetails" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

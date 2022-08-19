@@ -5,14 +5,14 @@ import java.util.Map;
 
 public class AdvertisementData {
 
-    public String category, description, email, location, name, phoneNumber, price, title;
+    public String category, description, email, location, name, phoneNumber, price, title,id;
     public ArrayList<String> links;
 
     public AdvertisementData(){
 
     }
 
-    public AdvertisementData(String category, String description, String email, String location, String name, String phoneNumber, String price, String title, ArrayList<String> links) {
+    public AdvertisementData(String category, String description, String email, String location, String name, String phoneNumber, String price, String title, ArrayList<String> links, String id) {
         this.category = category;
         this.description = description;
         this.email = email;
@@ -22,6 +22,7 @@ public class AdvertisementData {
         this.price = price;
         this.title = title;
         this.links = links;
+        this.id = id;
     }
 
     public AdvertisementData asignData(Map<String,Object> data){
@@ -34,10 +35,17 @@ public class AdvertisementData {
         this.price = data.getOrDefault("price", "default").toString();
         this.title = data.getOrDefault("title", "default").toString();
         this.links = (ArrayList<String>) data.getOrDefault("links", "default");
+        this.id = data.getOrDefault("id", "default").toString();
         return this;
     }
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCategory() {
         return category;

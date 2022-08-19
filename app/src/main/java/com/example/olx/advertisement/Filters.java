@@ -1,9 +1,10 @@
-package com.example.olx;
+package com.example.olx.advertisement;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.olx.R;
 import com.example.olx.fragments.FragmentNavigation;
 
 public class Filters extends AppCompatActivity {

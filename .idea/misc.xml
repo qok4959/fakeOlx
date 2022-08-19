@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable-anydpi/home.xml" value="0.2205" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.2815" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.385" />
+        <entry key="app/src/main/res/drawable/image_circle.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_add_advertisement.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_add_image.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_advertisement_details.xml" value="0.264" />
@@ -16,7 +17,7 @@
         <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_filters.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.2222222222222222" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.32175925925925924" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_popup_image2.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.264" />

@@ -12,7 +12,9 @@
         <entry key="app/src/main/res/drawable/image_circle.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_add_advertisement.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_add_image.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_advanced_filters.xml" value="0.2759259259259259" />
         <entry key="app/src/main/res/layout/activity_advertisement_details.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_detailed_filters.xml" value="0.39376915219611847" />
         <entry key="app/src/main/res/layout/activity_edit.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_filters.xml" value="0.2222222222222222" />
@@ -33,6 +35,7 @@
         <entry key="app/src/main/res/layout/frament_navigation.xml" value="0.2722222222222222" />
         <entry key="app/src/main/res/layout/item.xml" value="0.4" />
         <entry key="app/src/main/res/layout/item_advertisement.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/item_advertisement_full.xml" value="0.22760416666666666" />
         <entry key="app/src/main/res/layout/item_image.xml" value="0.264" />
         <entry key="app/src/main/res/layout/list_view.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/popup_image.xml" value="0.264" />

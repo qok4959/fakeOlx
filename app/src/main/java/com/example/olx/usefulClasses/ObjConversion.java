@@ -2,16 +2,16 @@ package com.example.olx.usefulClasses;
 
 import com.google.gson.Gson;
 
-public class AndroidPacket {
+public class ObjConversion {
 
     public AdvertisementData data;
 
+
     //constructor
-    public AndroidPacket(AdvertisementData cName){
+    public ObjConversion(AdvertisementData cName){
         data = cName;
     }
     // other fields ....
-
 
     // You can add those functions as LiveTemplate !
     public String toJson() {
@@ -19,8 +19,8 @@ public class AndroidPacket {
         return gson.toJson(this);
     }
 
-    public static AndroidPacket fromJson(String json) {
+    public static ObjConversion fromJson(String json) {
         Gson gson = new Gson();
-        return gson.fromJson(json, AndroidPacket.class);
+        return gson.fromJson(json, ObjConversion.class);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.olx.usefulClasses;
 
+import com.example.olx.model.AdvertisementModel;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -7,9 +9,23 @@ public class AdvertisementData {
 
     public String category, description, email, location, name, phoneNumber, price, title,id;
     public ArrayList<String> links;
+    AdvertisementModel model;
+
+    public AdvertisementModel getModel() {
+        return model;
+    }
+
+    public void setModel(AdvertisementModel model) {
+        this.model = model;
+    }
 
     public AdvertisementData(){
+        model = null;
+    }
 
+    public void fetchAllData(){
+        model = new AdvertisementModel();
+        model.retrieveAllData();
     }
 
     public AdvertisementData(String category, String description, String email, String location, String name, String phoneNumber, String price, String title, ArrayList<String> links, String id) {

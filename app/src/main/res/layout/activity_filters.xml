@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Filters">
+    tools:context=".advertisement.Filters">
 
     <androidx.fragment.app.FragmentContainerView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,4 +13,29 @@
         android:layout_height="match_parent"
         android:name="com.example.olx.fragments.FragmentNavigation" />
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAdvertisementFull"
+        android:layout_width="412dp"
+        android:layout_height="484dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFilters" />
+
+    <Button
+        android:id="@+id/buttonFilters"
+        android:layout_width="330dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:text="more Filters"
+        android:textColor="@color/fourthColor"
+        android:textSize="33dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fragment_container_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

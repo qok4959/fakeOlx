@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.olx.R;
 import com.example.olx.adapters.ImageAdapter;
 import com.example.olx.fragments.FragmentNavigation;
-import com.example.olx.usefulClasses.AndroidPacket;
+import com.example.olx.usefulClasses.ObjConversion;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,7 @@ public class AdvertisementDetails extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String objAsJson = bundle.getString("my_obj");
-        AndroidPacket androidPacket = AndroidPacket.fromJson(objAsJson);
+        ObjConversion androidPacket = ObjConversion.fromJson(objAsJson);
 
 
         title.setText(androidPacket.data.getTitle());

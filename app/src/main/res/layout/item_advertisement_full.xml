@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/imageViewEachPhoto"
+        android:id="@+id/imageViewEachPhoto2"
         android:layout_width="160dp"
         android:layout_height="225dp"
         android:layout_marginStart="4dp"
@@ -17,35 +17,8 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/btnEditAdvertisement"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="4dp"
-        android:backgroundTint="@color/primaryColor"
-        android:text="Edit"
-        android:textColor="@color/fourthColor"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewEachPhoto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewItemPrice" />
-
-    <Button
-        android:id="@+id/btnDeleteAdvertisement"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="5dp"
-        android:backgroundTint="@color/red"
-        android:text="DELETE"
-        android:textColor="@color/fourthColor"
-        android:textSize="18dp"
-
-        app:layout_constraintStart_toEndOf="@+id/btnEditAdvertisement"
-        app:layout_constraintTop_toTopOf="@+id/btnEditAdvertisement" />
-
     <TextView
-        android:id="@+id/textViewItemTitle"
+        android:id="@+id/textViewItemTitle2"
         android:layout_width="188dp"
         android:layout_height="49dp"
         android:layout_marginStart="24dp"
@@ -56,19 +29,36 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageViewEachPhoto"
-        app:layout_constraintTop_toTopOf="@+id/imageViewEachPhoto" />
+        app:layout_constraintStart_toEndOf="@+id/imageViewEachPhoto2"
+        app:layout_constraintTop_toTopOf="@+id/imageViewEachPhoto2" />
+
 
     <TextView
-        android:id="@+id/textViewItemPrice"
+        android:id="@+id/textViewFullItemLocation"
+        android:layout_width="188dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="160dp"
+        android:inputType="textMultiLine"
+        android:text="Location"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageViewEachPhoto2"
+        app:layout_constraintTop_toTopOf="@+id/imageViewEachPhoto2" />
+
+    <TextView
+        android:id="@+id/textViewItemPrice2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="40dp"
         android:text="Price"
         android:textColor="@color/red"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageViewEachPhoto"
-        app:layout_constraintTop_toBottomOf="@+id/textViewItemTitle" />
+        app:layout_constraintStart_toEndOf="@+id/imageViewEachPhoto2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewItemTitle2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

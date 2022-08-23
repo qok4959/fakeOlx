@@ -1,5 +1,6 @@
 package com.example.olx.adapters;
 
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -20,12 +21,12 @@ import com.example.olx.usefulClasses.ObjConversion;
 
 import java.util.ArrayList;
 
-public class AdvertisementAdapter extends RecyclerView.Adapter {
+public class AdvertisementFullAdapter extends RecyclerView.Adapter {
 
     ArrayList<AdvertisementData> arrData;
     Context context;
 
-    public AdvertisementAdapter(ArrayList<AdvertisementData> arrData2, Context context) {
+    public AdvertisementFullAdapter(ArrayList<AdvertisementData> arrData2, Context context) {
         arrData = arrData2;
         this.context = context;
     }
@@ -33,8 +34,8 @@ public class AdvertisementAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_advertisement, parent,false);
-        AdvertisementAdapter.ViewHolder viewHolder = new AdvertisementAdapter.ViewHolder(v);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_advertisement_full, parent,false);
+        AdvertisementFullAdapter.ViewHolder viewHolder = new AdvertisementFullAdapter.ViewHolder(v);
         return viewHolder;
 
     }
@@ -76,14 +77,15 @@ public class AdvertisementAdapter extends RecyclerView.Adapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView description, price;
+        TextView description, price,location;
         ImageView img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            description = itemView.findViewById(R.id.textViewItemTitle);
-            price = itemView.findViewById(R.id.textViewItemPrice);
-            img = itemView.findViewById(R.id.imageViewEachPhoto);
+            description = itemView.findViewById(R.id.textViewItemTitle2);
+            price = itemView.findViewById(R.id.textViewItemPrice2);
+            img = itemView.findViewById(R.id.imageViewEachPhoto2);
+            location = itemView.findViewById(R.id.textViewFullItemLocation);
         }
     }
 

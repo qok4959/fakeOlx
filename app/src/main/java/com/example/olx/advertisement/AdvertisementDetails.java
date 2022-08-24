@@ -60,8 +60,6 @@ public class AdvertisementDetails extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         ImageAdapter customAdapter = new ImageAdapter((ArrayList<String>)androidPacket.data.links, AdvertisementDetails.this);
         recyclerView.setAdapter(customAdapter);
-
-
     }
 
     public static String capitalize(String str)

@@ -26,7 +26,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddAdvertisement extends AppCompatActivity {
+
+//@TODO edit advertisement
+//@TODO delete
+
+public class EditAdvertisement extends AppCompatActivity {
 
 
     FirebaseFirestore db;
@@ -91,7 +95,7 @@ public class AddAdvertisement extends AppCompatActivity {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddAdvertisement.this, AddImage.class);
+                Intent intent = new Intent(EditAdvertisement.this, AddImage.class);
                 startActivity(intent);
             }
         });
@@ -103,7 +107,7 @@ public class AddAdvertisement extends AppCompatActivity {
                 if (validation()){
                     saveToDb();
                     Toast.makeText(getApplicationContext(), "Advertisement has been added", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(AddAdvertisement.this, YourAdvertisements.class);
+                    Intent intent = new Intent(EditAdvertisement    .this, YourAdvertisements.class);
                     startActivity(intent);
                 }
             }

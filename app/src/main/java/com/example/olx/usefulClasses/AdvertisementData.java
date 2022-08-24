@@ -7,9 +7,17 @@ import java.util.Map;
 
 public class AdvertisementData {
 
-    public String category, description, email, location, name, phoneNumber, price, title,id;
+    public String category, description, email, location, name, phoneNumber, price, title,id,date;
     public ArrayList<String> links;
     AdvertisementModel model;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public AdvertisementModel getModel() {
         return model;
@@ -39,20 +47,46 @@ public class AdvertisementData {
         this.title = title;
         this.links = links;
         this.id = id;
+        this.date = java.time.LocalDate.now().toString();
     }
 
-    public AdvertisementData asignData(Map<String,Object> data){
-        this.category = data.getOrDefault("category", "default").toString();
-        this.description = data.getOrDefault("description", "default").toString();
-        this.email = data.getOrDefault("email", "default").toString();
-        this.location = data.getOrDefault("location", "default").toString();
-        this.name = data.getOrDefault("name", "default").toString();
-        this.phoneNumber = data.getOrDefault("phoneNumber", "default").toString();
-        this.price = data.getOrDefault("price", "default").toString();
-        this.title = data.getOrDefault("title", "default").toString();
-        this.links = (ArrayList<String>) data.getOrDefault("links", "default");
-        this.id = data.getOrDefault("id", "default").toString();
-        return this;
+    public AdvertisementData assignData(Map<String,Object> data){
+        AdvertisementData temp = new AdvertisementData();
+
+        temp.setCategory(data.getOrDefault("category", "default").toString());
+        temp.setDescription(data.getOrDefault("description", "default").toString());
+        temp.setEmail(data.getOrDefault("email", "default").toString());
+        temp.setLocation(data.getOrDefault("location", "default").toString());
+        temp.setName(data.getOrDefault("name", "default").toString());
+        temp.setPhoneNumber(data.getOrDefault("phoneNumber", "default").toString());
+        temp.setPrice(data.getOrDefault("price", "default").toString());
+        temp.setTitle(data.getOrDefault("title", "default").toString());
+        temp.setLinks((ArrayList<String>) data.getOrDefault("links", "default"));
+        temp.setId(data.getOrDefault("id", "default").toString());
+        temp.setDate(java.time.LocalDate.now().toString());
+        return temp;
+
+
+//        this.category = data.getOrDefault("category", "default").toString();
+//        this.description = data.getOrDefault("description", "default").toString();
+//        this.email = data.getOrDefault("email", "default").toString();
+//        this.location = data.getOrDefault("location", "default").toString();
+//        this.name = data.getOrDefault("name", "default").toString();
+//        this.phoneNumber = data.getOrDefault("phoneNumber", "default").toString();
+//        this.price = data.getOrDefault("price", "default").toString();
+//        this.title = data.getOrDefault("title", "default").toString();
+//        this.links = (ArrayList<String>) data.getOrDefault("links", "default");
+//        this.id = data.getOrDefault("id", "default").toString();
+//        this.date = java.time.LocalDate.now().toString();
+//        return this;
+    }
+
+    public Double getPriceDouble(){
+        return Double.parseDouble(price);
+    }
+
+    public void setPriceDouble(Double pr){
+        price = pr.toString();
     }
 
     public String getId() {

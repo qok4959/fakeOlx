@@ -7,6 +7,8 @@ import android.os.Bundle;
 import com.example.olx.R;
 import com.example.olx.fragments.FragmentNavigation;
 
+//@TODO favorite
+
 public class Favorite extends AppCompatActivity {
 
     @Override

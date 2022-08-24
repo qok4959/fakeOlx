@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.olx.Home;
 import com.example.olx.R;
 import com.example.olx.adapters.AdvertisementAdapter;
+import com.example.olx.adapters.AdvertisementFullAdapter;
 import com.example.olx.fragments.FragmentNavigation;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
@@ -23,7 +26,10 @@ import java.util.ArrayList;
 public class Filters extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Button btnFilters;
+    Button btnFilters, btnCheap, btnExpensive;
+    String sortPrice="none";
+    TextView info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,7 @@ public class Filters extends AppCompatActivity {
         btnFilters = findViewById(R.id.buttonFilters);
 
         recyclerView = findViewById(R.id.recyclerViewAdvertisementFull);
+        info = findViewById(R.id.textViewInfo);
 
         if (androidPacket.data.size()==0){
             Log.d("co jest", "nothing to show");
@@ -51,8 +58,16 @@ public class Filters extends AppCompatActivity {
         else{
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
             recyclerView.setLayoutManager(linearLayoutManager);
-            AdvertisementAdapter customAdapter = new AdvertisementAdapter((ArrayList<AdvertisementData>)androidPacket.data, Filters.this);
+            AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>)androidPacket.data, Filters.this);
             recyclerView.setAdapter(customAdapter);
+        }
+
+
+        if (androidPacket.data.size()==0){
+            info.setVisibility(View.VISIBLE);
+        }
+        else{
+            info.setVisibility(View.INVISIBLE);
         }
 
 

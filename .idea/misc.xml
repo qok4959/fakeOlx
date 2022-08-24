@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/layout/activity_detailed_filters.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_edit.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_filtered.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_filtered_advertisements.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/activity_filters.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />

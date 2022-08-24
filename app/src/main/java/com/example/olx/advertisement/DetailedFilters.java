@@ -2,6 +2,7 @@ package com.example.olx.advertisement;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.BlendMode;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -88,14 +89,6 @@ public class DetailedFilters extends AppCompatActivity {
                 }
 
 
-
-
-//                for (AdvertisementData i : androidPacket.data){
-//
-//                }
-//                ArrayList<AdvertisementData> tempList;
-                Log.d("afterFiltering", String.valueOf(androidPacket.data.size()));
-                Log.d("filtering", androidPacket.data.get(0).getLocation()+" = "+strLocation);
                 ArrayList<AdvertisementData> tempList = androidPacket.data;
 
                 if (strLocation!="none"){
@@ -113,16 +106,9 @@ public class DetailedFilters extends AppCompatActivity {
                 Log.d("afterFiltering2", String.valueOf(tempList.size()));
 
 
-
-                //TODO sortowanie
+                //sorting
                 if (!sortPrice.equals("none")){
-
                     Log.d("checkPrice", "test");
-
-                    for (AdvertisementData i: tempList){
-                        Log.d("checkPriceBeforeSorting", i.getPrice().toString());
-                    }
-
                     if (sortPrice.equals("cheap")) {
                         tempList = (ArrayList<AdvertisementData>) tempList.stream()
                                 .sorted(Comparator.comparingDouble(AdvertisementData::getPriceDouble)).collect(Collectors.toList());
@@ -133,17 +119,15 @@ public class DetailedFilters extends AppCompatActivity {
                                 .reversed())
                                 .collect(Collectors.toList());
                     }
-
-
-                    for (AdvertisementData i: tempList){
-                        Log.d("checkPriceAfterSorting", i.getPrice().toString());
-                    }
-
-
                 }
-
-
                 Log.d("testInputs", strPriceFrom+" "+strPriceTo + " "+strLocation+" "+sortPrice);
+
+
+                Intent i = new Intent(DetailedFilters.this, Filtered.class);
+                ObjArrConversion androidPacket2 = new ObjArrConversion(tempList);
+                String objAsJson = androidPacket2.toJson();
+                i.putExtra("my_obj", objAsJson);
+                startActivity(i);
             }
         });
 

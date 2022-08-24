@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.olx.Home;
 import com.example.olx.R;
@@ -26,6 +28,7 @@ public class Filters extends AppCompatActivity {
     RecyclerView recyclerView;
     Button btnFilters, btnCheap, btnExpensive;
     String sortPrice="none";
+    TextView info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class Filters extends AppCompatActivity {
         btnFilters = findViewById(R.id.buttonFilters);
 
         recyclerView = findViewById(R.id.recyclerViewAdvertisementFull);
+        info = findViewById(R.id.textViewInfo);
 
         if (androidPacket.data.size()==0){
             Log.d("co jest", "nothing to show");
@@ -59,6 +63,12 @@ public class Filters extends AppCompatActivity {
         }
 
 
+        if (androidPacket.data.size()==0){
+            info.setVisibility(View.VISIBLE);
+        }
+        else{
+            info.setVisibility(View.INVISIBLE);
+        }
 
 
         btnFilters.setOnClickListener(new View.OnClickListener() {

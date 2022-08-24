@@ -18,7 +18,9 @@ import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Locale;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class DetailedFilters extends AppCompatActivity {
@@ -113,12 +115,32 @@ public class DetailedFilters extends AppCompatActivity {
 
 
                 //TODO sortowanie
-//                if (!sortPrice.equals("none")){
-//
-//                    if (sortPrice.equals("cheap"))
-//                    tempList = tempList.stream()
-//                            .sorted(Comparator.comparingInt(tempList))
-//                }
+                if (!sortPrice.equals("none")){
+
+                    Log.d("checkPrice", "test");
+
+                    for (AdvertisementData i: tempList){
+                        Log.d("checkPriceBeforeSorting", i.getPrice().toString());
+                    }
+
+                    if (sortPrice.equals("cheap")) {
+                        tempList = (ArrayList<AdvertisementData>) tempList.stream()
+                                .sorted(Comparator.comparingDouble(AdvertisementData::getPriceDouble)).collect(Collectors.toList());
+                    }
+                    else{
+                        tempList = (ArrayList<AdvertisementData>) tempList.stream()
+                                .sorted(Comparator.comparingDouble(AdvertisementData::getPriceDouble)
+                                .reversed())
+                                .collect(Collectors.toList());
+                    }
+
+
+                    for (AdvertisementData i: tempList){
+                        Log.d("checkPriceAfterSorting", i.getPrice().toString());
+                    }
+
+
+                }
 
 
                 Log.d("testInputs", strPriceFrom+" "+strPriceTo + " "+strLocation+" "+sortPrice);

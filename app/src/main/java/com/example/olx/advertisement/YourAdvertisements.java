@@ -45,7 +45,7 @@ public class YourAdvertisements extends AppCompatActivity {
             public void onClick(View view) {
 
                 for (Map<String,Object> i : model.getAllUserData()){
-                    advertisementData.add(new AdvertisementData().asignData(i));
+                    advertisementData.add(new AdvertisementData().assignData(i));
                 }
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());

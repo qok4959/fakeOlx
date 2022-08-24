@@ -9,12 +9,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.olx.advertisement.AdvertisementDetails;
 import com.example.olx.advertisement.Filters;
 import com.example.olx.fragments.FragmentNavigation;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
-import com.example.olx.usefulClasses.ObjConversion;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -53,7 +51,6 @@ public class Home extends AppCompatActivity {
         music = findViewById(R.id.imageViewMusic);
         realEstate = findViewById(R.id.imageViewRealEstate);
 
-        //TODO not showing all advertisements
 
         View.OnClickListener imageListener = new View.OnClickListener() {
             @Override
@@ -93,7 +90,7 @@ public class Home extends AppCompatActivity {
                     if (tempStr1.equals(output)){
 //                    i.getOrDefault("category", "default").toString().equals(output)){
                         Log.d("equation=", tempStr1+" = "+ output);
-                        tempAd = tempAd.asignData(i);
+                        tempAd = tempAd.assignData(i);
                         dataList.add(tempAd);
                     }
 

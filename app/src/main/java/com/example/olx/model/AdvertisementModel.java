@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdvertisementModel {
-    String category, description, email, location, name, phoneNumber, price, title;
+    String category, description, email, location, name, phoneNumber, price, title, date;
     ArrayList<String> links;
     final String TAG;
     ArrayList<Map<String,Object>> allData, allUserData;
@@ -25,6 +25,13 @@ public class AdvertisementModel {
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
+    public ArrayList<Map<String, Object>> getAllData() {
+        return allData;
+    }
+
+    public void setAllData(ArrayList<Map<String, Object>> allData) {
+        this.allData = allData;
+    }
 
     public AdvertisementModel() {
         TAG = "loggingResult";

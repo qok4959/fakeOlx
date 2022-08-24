@@ -13,6 +13,7 @@ import android.widget.Button;
 import com.example.olx.Home;
 import com.example.olx.R;
 import com.example.olx.adapters.AdvertisementAdapter;
+import com.example.olx.adapters.AdvertisementFullAdapter;
 import com.example.olx.fragments.FragmentNavigation;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
@@ -23,7 +24,9 @@ import java.util.ArrayList;
 public class Filters extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Button btnFilters;
+    Button btnFilters, btnCheap, btnExpensive;
+    String sortPrice="none";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +54,11 @@ public class Filters extends AppCompatActivity {
         else{
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
             recyclerView.setLayoutManager(linearLayoutManager);
-            AdvertisementAdapter customAdapter = new AdvertisementAdapter((ArrayList<AdvertisementData>)androidPacket.data, Filters.this);
+            AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>)androidPacket.data, Filters.this);
             recyclerView.setAdapter(customAdapter);
         }
+
+
 
 
         btnFilters.setOnClickListener(new View.OnClickListener() {

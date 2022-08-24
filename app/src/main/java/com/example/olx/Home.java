@@ -53,10 +53,12 @@ public class Home extends AppCompatActivity {
         music = findViewById(R.id.imageViewMusic);
         realEstate = findViewById(R.id.imageViewRealEstate);
 
+        //TODO not showing all advertisements
+
         View.OnClickListener imageListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("clicked?", "hello");
+                Log.d("clicked?", String.valueOf(data.getModel().getAllData().size()));
                 switch(view.getId()){
                     case R.id.imageViewAutomotive:
                         output=list[0];
@@ -85,7 +87,7 @@ public class Home extends AppCompatActivity {
                 }
 
                 AdvertisementData tempAd = new AdvertisementData();
-                for (Map<String, Object> i : data.getModel().getAllUserData()){
+                for (Map<String, Object> i : data.getModel().getAllData()){
 
                     String tempStr1=i.getOrDefault("category", "default").toString();
                     if (tempStr1.equals(output)){

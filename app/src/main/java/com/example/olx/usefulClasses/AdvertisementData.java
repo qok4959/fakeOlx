@@ -7,9 +7,17 @@ import java.util.Map;
 
 public class AdvertisementData {
 
-    public String category, description, email, location, name, phoneNumber, price, title,id;
+    public String category, description, email, location, name, phoneNumber, price, title,id,date;
     public ArrayList<String> links;
     AdvertisementModel model;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public AdvertisementModel getModel() {
         return model;
@@ -39,6 +47,7 @@ public class AdvertisementData {
         this.title = title;
         this.links = links;
         this.id = id;
+        this.date = java.time.LocalDate.now().toString();
     }
 
     public AdvertisementData asignData(Map<String,Object> data){
@@ -52,6 +61,7 @@ public class AdvertisementData {
         this.title = data.getOrDefault("title", "default").toString();
         this.links = (ArrayList<String>) data.getOrDefault("links", "default");
         this.id = data.getOrDefault("id", "default").toString();
+        this.date = java.time.LocalDate.now().toString();
         return this;
     }
 

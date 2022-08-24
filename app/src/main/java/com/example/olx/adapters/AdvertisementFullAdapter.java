@@ -44,9 +44,12 @@ public class AdvertisementFullAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
 
-        AdvertisementAdapter.ViewHolder myViewHolder = (AdvertisementAdapter.ViewHolder)holder;
-        myViewHolder.description.setText(arrData.get(position).getDescription());
+        AdvertisementFullAdapter.ViewHolder myViewHolder = (AdvertisementFullAdapter.ViewHolder)holder;
+        myViewHolder.title.setText(arrData.get(position).getDescription());
         myViewHolder.price.setText(arrData.get(position).getPrice());
+        myViewHolder.location.setText(arrData.get(position).getLocation());
+        myViewHolder.date.setText(arrData.get(position).getDate());
+
 
         String tempLink="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
         if (arrData.get(position).getLinks().size()==0)
@@ -77,15 +80,17 @@ public class AdvertisementFullAdapter extends RecyclerView.Adapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView description, price,location;
+        TextView title, price,location;
         ImageView img;
+        TextView date;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            description = itemView.findViewById(R.id.textViewItemTitle2);
+            title = itemView.findViewById(R.id.textViewItemTitle2);
             price = itemView.findViewById(R.id.textViewItemPrice2);
             img = itemView.findViewById(R.id.imageViewEachPhoto2);
             location = itemView.findViewById(R.id.textViewFullItemLocation);
+            date = itemView.findViewById(R.id.textViewFullItemDate);
         }
     }
 

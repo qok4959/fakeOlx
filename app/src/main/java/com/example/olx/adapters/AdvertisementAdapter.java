@@ -44,7 +44,7 @@ public class AdvertisementAdapter extends RecyclerView.Adapter {
 
 
         AdvertisementAdapter.ViewHolder myViewHolder = (AdvertisementAdapter.ViewHolder)holder;
-        myViewHolder.description.setText(arrData.get(position).getDescription());
+        myViewHolder.title.setText(arrData.get(position).getTitle());
         myViewHolder.price.setText(arrData.get(position).getPrice());
 
         String tempLink="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
@@ -76,12 +76,12 @@ public class AdvertisementAdapter extends RecyclerView.Adapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView description, price;
+        TextView title, price;
         ImageView img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            description = itemView.findViewById(R.id.textViewItemTitle);
+            title = itemView.findViewById(R.id.textViewItemTitle);
             price = itemView.findViewById(R.id.textViewItemPrice);
             img = itemView.findViewById(R.id.imageViewEachPhoto);
         }

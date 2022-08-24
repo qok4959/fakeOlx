@@ -38,7 +38,7 @@
         android:layout_width="188dp"
         android:layout_height="49dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="120dp"
         android:inputType="textMultiLine"
         android:text="Location"
         android:textColor="@color/black"
@@ -50,11 +50,25 @@
         app:layout_constraintTop_toTopOf="@+id/imageViewEachPhoto2" />
 
     <TextView
+        android:id="@+id/textViewFullItemDate"
+        android:layout_width="195dp"
+        android:layout_height="53dp"
+        android:inputType="textMultiLine"
+        android:text="Date"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewFullItemLocation"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFullItemLocation" />
+
+    <TextView
         android:id="@+id/textViewItemPrice2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:text="Price"
         android:textColor="@color/red"
         android:textSize="20dp"

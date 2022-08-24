@@ -36,6 +36,7 @@ public class AddAdvertisement extends AppCompatActivity {
     ImageView img;
     String strTitle, strDescription, strName, strPhoneNumber, strPrice;
     Spinner dropdownCategories, dropdownLocations;
+    String date;
 
     Map<String, Object> advertisement;
     ArrayList<String> imgLinks;
@@ -58,7 +59,7 @@ public class AddAdvertisement extends AppCompatActivity {
         img = findViewById(R.id.imgViewAddPhoto);
         btnAddAdvertisement = findViewById(R.id.btnAddAdvertisement);
         title = findViewById(R.id.editTxtAddTitle);
-        description = findViewById(R.id.editTxtAddTitle);
+        description = findViewById(R.id.editTxtAddDescription);
         name = findViewById(R.id.editTxtAddName);
         phoneNumber = findViewById(R.id.editTxtAddPhoneNumber);
         price = findViewById(R.id.editTxtPrice);
@@ -164,6 +165,7 @@ public class AddAdvertisement extends AppCompatActivity {
         advertisement.put("price", strPrice);
         advertisement.put("category", dropdownCategories.getSelectedItem().toString());
         advertisement.put("location", dropdownLocations.getSelectedItem().toString());
+        advertisement.put("date", this.date = java.time.LocalDate.now().toString());
 
 
 

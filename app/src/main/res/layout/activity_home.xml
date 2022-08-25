@@ -13,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp"
-        />
+        tools:layout_editor_absoluteY="0dp" />
 
     <TextView
         android:id="@+id/labelChooseCategory"
@@ -39,11 +38,10 @@
         android:layout_marginTop="28dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelChooseCategory"
-        app:srcCompat="@drawable/automotive"
-        android:padding="10dp"
-        />
+        app:srcCompat="@drawable/automotive" />
 
     <ImageView
         android:id="@+id/imageViewElectronics"
@@ -53,10 +51,10 @@
         android:layout_marginEnd="80dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelChooseCategory"
-        app:srcCompat="@drawable/electronics"
-        android:padding="10dp"/>
+        app:srcCompat="@drawable/electronics" />
 
     <ImageView
         android:id="@+id/imageViewFurniture"
@@ -65,10 +63,10 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/imageViewElectronics"
         app:layout_constraintTop_toBottomOf="@+id/imageViewElectronics"
-        app:srcCompat="@drawable/furniture"
-        android:padding="10dp"/>
+        app:srcCompat="@drawable/furniture" />
 
     <ImageView
         android:id="@+id/imageViewServices"
@@ -77,10 +75,10 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="@+id/imageViewAutomotive"
         app:layout_constraintTop_toBottomOf="@+id/imageViewAutomotive"
-        app:srcCompat="@drawable/services"
-        android:padding="10dp"/>
+        app:srcCompat="@drawable/services" />
 
 
     <ImageView
@@ -90,10 +88,10 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="@+id/imageViewMusic"
         app:layout_constraintTop_toBottomOf="@+id/imageViewMusic"
-        app:srcCompat="@drawable/jobs"
-        android:padding="10dp"/>
+        app:srcCompat="@drawable/jobs" />
 
     <ImageView
         android:id="@+id/imageViewFashion"
@@ -102,11 +100,10 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="@+id/imageViewRealEstate"
         app:layout_constraintTop_toBottomOf="@+id/imageViewRealEstate"
-        app:srcCompat="@drawable/fashion"
-        android:padding="10dp"
-        />
+        app:srcCompat="@drawable/fashion" />
 
     <ImageView
         android:id="@+id/imageViewMusic"
@@ -127,11 +124,10 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/image_circle"
         android:backgroundTint="@color/thirdColor"
+        android:padding="13dp"
         app:layout_constraintStart_toStartOf="@+id/imageViewServices"
         app:layout_constraintTop_toBottomOf="@+id/imageViewServices"
-        app:srcCompat="@drawable/real_estate"
-        android:padding="13dp"
-        />
+        app:srcCompat="@drawable/real_estate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

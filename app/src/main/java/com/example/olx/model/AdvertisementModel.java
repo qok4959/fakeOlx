@@ -16,14 +16,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdvertisementModel {
+    final String TAG;
     String category, description, email, location, name, phoneNumber, price, title, date;
     ArrayList<String> links;
-    final String TAG;
-    ArrayList<Map<String,Object>> allData, allUserData;
+    ArrayList<Map<String, Object>> allData, allUserData;
 
-    
+
     FirebaseFirestore db;
     FirebaseAuth mAuth;
+
+    public AdvertisementModel() {
+        TAG = "loggingResult";
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        email = mAuth.getCurrentUser().getEmail();
+        allData = new ArrayList<Map<String, Object>>();
+        allUserData = new ArrayList<Map<String, Object>>();
+        retrieveDataLoggedInUser();
+    }
 
     public ArrayList<Map<String, Object>> getAllData() {
         return allData;
@@ -33,18 +43,7 @@ public class AdvertisementModel {
         this.allData = allData;
     }
 
-    public AdvertisementModel() {
-        TAG = "loggingResult";
-        db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        email = mAuth.getCurrentUser().getEmail();
-        allData = new ArrayList<Map<String,Object>>();
-        allUserData = new ArrayList<Map<String,Object>>();
-        retrieveDataLoggedInUser();
-    }
-
-
-    public void retrieveDataLoggedInUser(){
+    public void retrieveDataLoggedInUser() {
         db.collection("advertisements")
                 .whereEqualTo("email", email)
                 .get()
@@ -55,7 +54,7 @@ public class AdvertisementModel {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                HashMap<String,Object> tempHashMap = new HashMap<>();
+                                HashMap<String, Object> tempHashMap = new HashMap<>();
 
                                 tempHashMap = (HashMap<String, Object>) document.getData();
                                 tempHashMap.put("id", document.getId());
@@ -68,7 +67,7 @@ public class AdvertisementModel {
                 });
     }
 
-    public void retrieveAllData(){
+    public void retrieveAllData() {
         db.collection("advertisements")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -78,7 +77,7 @@ public class AdvertisementModel {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                HashMap<String,Object> tempHashMap = new HashMap<>();
+                                HashMap<String, Object> tempHashMap = new HashMap<>();
 
                                 tempHashMap = (HashMap<String, Object>) document.getData();
                                 tempHashMap.put("id", document.getId());
@@ -92,15 +91,13 @@ public class AdvertisementModel {
     }
 
 
-
-    public ArrayList<Map<String,Object>> getAllUserData() {
+    public ArrayList<Map<String, Object>> getAllUserData() {
         return allUserData;
     }
 
-    public void setAllUserData(ArrayList<Map<String,Object>> allUserData) {
+    public void setAllUserData(ArrayList<Map<String, Object>> allUserData) {
         this.allUserData = allUserData;
     }
-
 
 
     public String getCategory() {

@@ -17,21 +17,21 @@ import com.example.olx.usefulClasses.AdvertisementData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextAdapter extends RecyclerView.Adapter{
+public class TextAdapter extends RecyclerView.Adapter {
 
     List links;
     Context context;
 
-    public TextAdapter(ArrayList<String> list, Context context2){
-        links=list;
-        context=context2;
+    public TextAdapter(ArrayList<String> list, Context context2) {
+        links = list;
+        context = context2;
     }
 
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -39,7 +39,7 @@ public class TextAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
-        ViewHolder myViewHolder = (ViewHolder)holder;
+        ViewHolder myViewHolder = (ViewHolder) holder;
         myViewHolder.link.setText(links.get(position).toString());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,6 @@ public class TextAdapter extends RecyclerView.Adapter{
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView link;
-
 
 
         public ViewHolder(@NonNull View itemView) {

@@ -27,7 +27,7 @@ public class Filters extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Button btnFilters, btnCheap, btnExpensive;
-    String sortPrice="none";
+    String sortPrice = "none";
     TextView info;
 
     @Override
@@ -52,21 +52,19 @@ public class Filters extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewAdvertisementFull);
         info = findViewById(R.id.textViewInfo);
 
-        if (androidPacket.data.size()==0){
+        if (androidPacket.data.size() == 0) {
             Log.d("co jest", "nothing to show");
-        }
-        else{
+        } else {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
             recyclerView.setLayoutManager(linearLayoutManager);
-            AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>)androidPacket.data, Filters.this);
+            AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>) androidPacket.data, Filters.this);
             recyclerView.setAdapter(customAdapter);
         }
 
 
-        if (androidPacket.data.size()==0){
+        if (androidPacket.data.size() == 0) {
             info.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             info.setVisibility(View.INVISIBLE);
         }
 
@@ -82,7 +80,6 @@ public class Filters extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
 
     }

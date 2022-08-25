@@ -25,11 +25,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class UserPanel extends AppCompatActivity {
 
+    final String TAG = "DB_LOG:";
     Button btnAddAdvertisement, btnYourAdvertisement, btnLogout, btnEditProfile;
     TextView nameTxtView;
     FirebaseFirestore db;
     private FirebaseAuth mAuth;
-    final String TAG = "DB_LOG:";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +56,14 @@ public class UserPanel extends AppCompatActivity {
 
 
         db.collection("users")
-                .whereEqualTo("email",currentUser.getEmail())
+                .whereEqualTo("email", currentUser.getEmail())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                nameTxtView.setText("Hello " + document.getData().getOrDefault("name", "no-name").toString()+"!");
+                                nameTxtView.setText("Hello " + document.getData().getOrDefault("name", "no-name").toString() + "!");
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {

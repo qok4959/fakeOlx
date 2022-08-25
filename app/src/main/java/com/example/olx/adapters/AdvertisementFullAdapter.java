@@ -34,7 +34,7 @@ public class AdvertisementFullAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_advertisement_full, parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_advertisement_full, parent, false);
         AdvertisementFullAdapter.ViewHolder viewHolder = new AdvertisementFullAdapter.ViewHolder(v);
         return viewHolder;
 
@@ -44,15 +44,15 @@ public class AdvertisementFullAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
 
-        AdvertisementFullAdapter.ViewHolder myViewHolder = (AdvertisementFullAdapter.ViewHolder)holder;
+        AdvertisementFullAdapter.ViewHolder myViewHolder = (AdvertisementFullAdapter.ViewHolder) holder;
         myViewHolder.title.setText(arrData.get(position).getDescription());
         myViewHolder.price.setText(arrData.get(position).getPrice());
         myViewHolder.location.setText(arrData.get(position).getLocation());
         myViewHolder.date.setText(arrData.get(position).getDate());
 
 
-        String tempLink="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
-        if (arrData.get(position).getLinks().size()==0)
+        String tempLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+        if (arrData.get(position).getLinks().size() == 0)
             arrData.get(position).getLinks().add(tempLink);
         Glide.with(context).load(arrData.get(position).getLinks().get(0)).into(myViewHolder.img);
 //        myViewHolder.itemView.set
@@ -80,7 +80,7 @@ public class AdvertisementFullAdapter extends RecyclerView.Adapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, price,location;
+        TextView title, price, location;
         ImageView img;
         TextView date;
 

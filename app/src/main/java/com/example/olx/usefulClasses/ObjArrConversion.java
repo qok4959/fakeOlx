@@ -11,19 +11,19 @@ public class ObjArrConversion {
 
 
     //constructor
-    public ObjArrConversion(ArrayList <AdvertisementData> data2){
+    public ObjArrConversion(ArrayList<AdvertisementData> data2) {
         data = data2;
     }
     // other fields ....
+
+    public static ObjArrConversion fromJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, ObjArrConversion.class);
+    }
 
     // You can add those functions as LiveTemplate !
     public String toJson() {
         Gson gson = new Gson();
         return gson.toJson(this);
-    }
-
-    public static ObjArrConversion fromJson(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, ObjArrConversion.class);
     }
 }

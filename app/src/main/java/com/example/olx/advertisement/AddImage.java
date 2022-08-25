@@ -49,11 +49,8 @@ public class AddImage extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        TextAdapter customAdapter = new TextAdapter((ArrayList<String>)imgLinks, AddImage.this);
+        TextAdapter customAdapter = new TextAdapter((ArrayList<String>) imgLinks, AddImage.this);
         recyclerView.setAdapter(customAdapter);
-
-
-
 
 
         imageViewBack.setOnClickListener(new View.OnClickListener() {
@@ -62,13 +59,23 @@ public class AddImage extends AppCompatActivity {
 //                Intent i = new Intent(AddImage.this, AddAdvertisement.class);
 //                i.putStringArrayListExtra("list", imgLinks);
 //                startActivity(i);
+                Log.d("imageViewTitle", androidPacket.data.getTitle());
                 androidPacket.data.setLinks(imgLinks);
 
-                Intent i = new Intent(AddImage.this, EditAdvertisement.class);
+
+                Log.d("bundleGetClass",getCallingActivity().getClassName());
+
+                Intent i;
+                if (getCallingActivity().getClassName().contains("AddAdvertisement"))
+                    i = new Intent(AddImage.this, AddAdvertisement.class);
+                else
+                    i = new Intent(AddImage.this, EditAdvertisement.class);
+
                 ObjConversion androidPacket2 = new ObjConversion(androidPacket.data);
                 String objAsJson = androidPacket2.toJson();
                 i.putExtra("my_obj", objAsJson);
                 startActivity(i);
+
             }
         });
 
@@ -76,13 +83,13 @@ public class AddImage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("LinksImgTest", imgLinks.toString());
-                if (validate()){
+                if (validate()) {
                     imgLinks.add(link.getText().toString());
                     Log.d("LinksImg", imgLinks.toString());
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
-                    TextAdapter customAdapter = new TextAdapter((ArrayList<String>)imgLinks, AddImage.this);
+                    TextAdapter customAdapter = new TextAdapter((ArrayList<String>) imgLinks, AddImage.this);
                     recyclerView.setAdapter(customAdapter);
                     link.setText("");
                 }
@@ -91,7 +98,7 @@ public class AddImage extends AppCompatActivity {
     }
 
 
-    public boolean validate(){
+    public boolean validate() {
 
         if (link.getText().toString().isEmpty()) {
             link.setError("link cannot be empty");
@@ -100,8 +107,6 @@ public class AddImage extends AppCompatActivity {
         }
         return true;
     }
-
-
 
 
 }

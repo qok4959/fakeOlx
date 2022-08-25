@@ -16,7 +16,8 @@ import com.example.olx.R;
 import com.example.olx.profile.UserPanel;
 
 public class FragmentNavigation extends Fragment {
-    ImageView home, favorite,add,profile;
+    ImageView home, favorite, add, profile;
+
     public FragmentNavigation() {
         super(R.layout.fragment_navigation);
     }

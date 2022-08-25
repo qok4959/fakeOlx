@@ -15,7 +15,6 @@
         tools:layout_editor_absoluteY="714dp" />
 
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="600dp"
@@ -145,8 +144,7 @@
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerCategories"
-                tools:ignore="SpeakableTextPresentCheck"
-                />
+                tools:ignore="SpeakableTextPresentCheck" />
 
 
             <Button
@@ -161,8 +159,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerLocation"
-               />
+                app:layout_constraintTop_toBottomOf="@+id/spinnerLocation" />
 
 
         </LinearLayout>

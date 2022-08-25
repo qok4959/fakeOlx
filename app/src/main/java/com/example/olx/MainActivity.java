@@ -35,19 +35,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView register, forgotPassword;
     String email, password;
     EditText editTxtEmail, editTxtPassword;
     TextView forgotPswdEditTxt;
-
     Button btnLogin;
-
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     ImageView googleBtn;
-
     FirebaseAuth mAuth;
-
+    private TextView register, forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +58,18 @@ public class MainActivity extends AppCompatActivity {
         forgotPassword = findViewById(R.id.textViewForgot);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(this,gso);
+        gsc = GoogleSignIn.getClient(this, gso);
         googleBtn = findViewById(R.id.googleImageView);
         btnLogin = findViewById(R.id.buttonLogin);
 
-        mAuth =  FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 email = editTxtEmail.getText().toString().trim().toLowerCase();
-                if (emailValidation()){
+                if (emailValidation()) {
                     mAuth.sendPasswordResetEmail(email);
                     Toast.makeText(getApplicationContext(), "email with password reset form has been sent", Toast.LENGTH_LONG).show();
                 }
@@ -103,10 +99,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    void signIn(){
+    void signIn() {
         Intent signInIntent = gsc.getSignInIntent();
-        startActivityForResult(signInIntent,1000);
+        startActivityForResult(signInIntent, 1000);
     }
 
     @Override
@@ -129,15 +124,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    void navigateToUserPanelActivity(){
+    void navigateToUserPanelActivity() {
         finish();
         Intent intent = new Intent(MainActivity.this, UserPanel.class);
         startActivity(intent);
     }
 
-    public void login(FirebaseAuth mAuth){
+    public void login(FirebaseAuth mAuth) {
 
-        if (validate()){
+        if (validate()) {
             email = editTxtEmail.getText().toString().trim().toLowerCase();
             password = editTxtPassword.getText().toString().trim();
             Log.d("emailPassword:", email + "\t" + password);
@@ -184,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public boolean passwordValidation(){
+    public boolean passwordValidation() {
 
         password = editTxtPassword.getText().toString().trim();
 
@@ -203,8 +198,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public boolean validate(){
-        if (emailValidation()){
+    public boolean validate() {
+        if (emailValidation()) {
             if (passwordValidation()) {
                 return true;
             }

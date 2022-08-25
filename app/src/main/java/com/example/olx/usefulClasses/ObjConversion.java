@@ -7,6 +7,10 @@ public class ObjConversion {
     public AdvertisementData data;
 
 
+    public ObjConversion(){
+
+    }
+
     //constructor
     public ObjConversion(AdvertisementData cName){
         data = cName;

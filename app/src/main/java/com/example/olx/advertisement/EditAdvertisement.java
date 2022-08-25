@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.olx.R;
 import com.example.olx.fragments.FragmentNavigation;
+import com.example.olx.usefulClasses.ObjArrConversion;
+import com.example.olx.usefulClasses.ObjConversion;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +25,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +35,6 @@ import java.util.Map;
 
 public class EditAdvertisement extends AppCompatActivity {
 
-
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     Button btnAddAdvertisement;
@@ -41,6 +43,7 @@ public class EditAdvertisement extends AppCompatActivity {
     String strTitle, strDescription, strName, strPhoneNumber, strPrice;
     Spinner dropdownCategories, dropdownLocations;
     String date;
+    public ObjConversion androidPacket;
 
     Map<String, Object> advertisement;
     ArrayList<String> imgLinks;
@@ -70,6 +73,9 @@ public class EditAdvertisement extends AppCompatActivity {
         dropdownCategories = findViewById(R.id.spinnerCategories);
         dropdownLocations = findViewById(R.id.spinnerLocation);
 
+
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             imgLinks=extras.getStringArrayList("list");
@@ -91,12 +97,37 @@ public class EditAdvertisement extends AppCompatActivity {
         dropdownLocations.setAdapter(adapterLocations);
 
 
+//        androidPacket = new ObjConversion();
+        Bundle bundle = getIntent().getExtras();
+        String objAsJson = bundle.getString("my_obj");
+        androidPacket = ObjConversion.fromJson(objAsJson);
+
+
+        int indexCategory = Arrays.asList(categories).indexOf(androidPacket.data.getCategory());
+        int indexLocation = Arrays.asList(locations).indexOf(androidPacket.data.getLocation());
+
+        title.setText(androidPacket.data.getTitle());
+        description.setText(androidPacket.data.getDescription());
+        name.setText(androidPacket.data.getName());
+        phoneNumber.setText(androidPacket.data.getPhoneNumber());
+        price.setText(androidPacket.data.getPrice());
+        dropdownCategories.setSelection(indexCategory);
+        dropdownLocations.setSelection(indexLocation);
+
+
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EditAdvertisement.this, AddImage.class);
-                startActivity(intent);
+
+                Intent i = new Intent(EditAdvertisement.this, AddImage.class);
+                ObjConversion androidPacket2 = new ObjConversion(androidPacket.data);
+                String objAsJson = androidPacket2.toJson();
+                i.putExtra("my_obj", objAsJson);
+                startActivity(i);
+
+//                Intent intent = new Intent(EditAdvertisement.this, AddImage.class);
+//                startActivity(intent);
             }
         });
 
@@ -162,7 +193,8 @@ public class EditAdvertisement extends AppCompatActivity {
 
         advertisement.put("name", strName);
         advertisement.put("phoneNumber", strPhoneNumber);
-        advertisement.put("description", strDescription);
+//        advertisement.put("description", strDescription);
+        advertisement.put("description", "edited description");
         advertisement.put("title", strTitle);
         advertisement.put("links", imgLinks);
         advertisement.put("email", mAuth.getCurrentUser().getEmail().toString());
@@ -172,22 +204,24 @@ public class EditAdvertisement extends AppCompatActivity {
         advertisement.put("date", this.date = java.time.LocalDate.now().toString());
 
 
-
         // Add a new document with a generated ID
+//        db.collection("advertisements")
+//                .add(advertisement)
+//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        Log.d("addingDocument:", "DocumentSnapshot added with ID: " + documentReference.getId());
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w("addingDocument:", "Error adding document", e);
+//                    }
+//                });
+
         db.collection("advertisements")
-                .add(advertisement)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("addingDocument:", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("addingDocument:", "Error adding document", e);
-                    }
-                });
+                .document("K7pQzJ9Dys1e2kLV6aYX").set(advertisement);
     }
 
 }

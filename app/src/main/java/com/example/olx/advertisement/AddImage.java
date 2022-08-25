@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.example.olx.adapters.TextAdapter;
 import com.example.olx.R;
+import com.example.olx.usefulClasses.ObjConversion;
 
 import java.util.ArrayList;
 
@@ -34,11 +35,17 @@ public class AddImage extends AppCompatActivity {
 
         imgLinks = new ArrayList<String>();
 
+
         imageViewBack = findViewById(R.id.ImageViewBackFromAddLinks);
         btnAddLink = findViewById(R.id.btnAddLinkTest2);
         recyclerView = findViewById(R.id.recyclerViewLinks);
         link = findViewById(R.id.editTextAddLink);
 
+        Bundle bundle = getIntent().getExtras();
+        String objAsJson = bundle.getString("my_obj");
+        ObjConversion androidPacket = ObjConversion.fromJson(objAsJson);
+
+        imgLinks = androidPacket.data.getLinks();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -46,11 +53,21 @@ public class AddImage extends AppCompatActivity {
         recyclerView.setAdapter(customAdapter);
 
 
+
+
+
         imageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(AddImage.this, AddAdvertisement.class);
-                i.putStringArrayListExtra("list", imgLinks);
+//                Intent i = new Intent(AddImage.this, AddAdvertisement.class);
+//                i.putStringArrayListExtra("list", imgLinks);
+//                startActivity(i);
+                androidPacket.data.setLinks(imgLinks);
+
+                Intent i = new Intent(AddImage.this, EditAdvertisement.class);
+                ObjConversion androidPacket2 = new ObjConversion(androidPacket.data);
+                String objAsJson = androidPacket2.toJson();
+                i.putExtra("my_obj", objAsJson);
                 startActivity(i);
             }
         });

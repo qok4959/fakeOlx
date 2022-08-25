@@ -59,7 +59,7 @@
                 android:ems="10"
                 android:hint="name"
                 android:inputType="textPersonName"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 tools:ignore="TouchTargetSizeCheck"
 
                 />
@@ -74,7 +74,7 @@
                 android:ems="10"
                 android:hint="title   i.e toyota yaris 2008 1.2 75km"
                 android:inputType="text"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
@@ -90,7 +90,7 @@
                 android:inputType="textMultiLine"
                 android:singleLine="false"
                 android:textAlignment="textStart"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -104,7 +104,7 @@
                 android:ems="10"
                 android:hint="phone number"
                 android:inputType="number"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTxtAddDescription"
@@ -120,7 +120,7 @@
                 android:ems="10"
                 android:hint="price"
                 android:inputType="number"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTxtAddPhoneNumber"

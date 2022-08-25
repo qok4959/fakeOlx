@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.olx.R;
 import com.example.olx.fragments.FragmentNavigation;
+import com.example.olx.usefulClasses.ObjConversion;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,8 +77,13 @@ public class AddAdvertisement extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
+        Bundle bundle = getIntent().getExtras();
+        String objAsJson = bundle.getString("my_obj");
+        ObjConversion androidPacket = ObjConversion.fromJson(objAsJson);
+
         String[] categories = new String[]{"Automotive", "Electronics", "Furniture", "Services", "Jobs", "Fashion", "Music", "Real estate"};
         String[] locations = new String[]{"dolnośląskie","kujawsko-pomorskie","lubelskie","lubuskie","łódzkie","małopolskie","mazowieckie","opolskie","podkarpackie","podlaskie","pomorskie","śląskie","świętokrzyskie","warmińsko-mazurskie","wielkopolskie","zachodniopomorskie"};
+
 
         ArrayAdapter<String> adapterCategories = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
         dropdownCategories.setAdapter(adapterCategories);

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.olx.R;
 import com.example.olx.advertisement.AdvertisementDetails;
+import com.example.olx.advertisement.EditAdvertisement;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjConversion;
 
@@ -36,7 +38,6 @@ public class AdvertisementAdapter extends RecyclerView.Adapter {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_advertisement, parent,false);
         AdvertisementAdapter.ViewHolder viewHolder = new AdvertisementAdapter.ViewHolder(v);
         return viewHolder;
-
     }
 
     @Override
@@ -47,11 +48,24 @@ public class AdvertisementAdapter extends RecyclerView.Adapter {
         myViewHolder.title.setText(arrData.get(position).getTitle());
         myViewHolder.price.setText(arrData.get(position).getPrice());
 
+        myViewHolder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, EditAdvertisement.class);
+                ObjConversion androidPacket = new ObjConversion(arrData.get(position));
+                String objAsJson = androidPacket.toJson();
+                i.putExtra("my_obj", objAsJson);
+                context.startActivity(i);
+            }
+        });
+
         String tempLink="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
         if (arrData.get(position).getLinks().size()==0)
             arrData.get(position).getLinks().add(tempLink);
         Glide.with(context).load(arrData.get(position).getLinks().get(0)).into(myViewHolder.img);
 //        myViewHolder.itemView.set
+
+
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -78,12 +92,15 @@ public class AdvertisementAdapter extends RecyclerView.Adapter {
 
         TextView title, price;
         ImageView img;
+        Button btnEdit, btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textViewItemTitle);
             price = itemView.findViewById(R.id.textViewItemPrice);
             img = itemView.findViewById(R.id.imageViewEachPhoto);
+            btnEdit = itemView.findViewById(R.id.btnEditAdvertisement);
+            btnDelete = itemView.findViewById(R.id.btnDeleteAdvertisement);
         }
     }
 

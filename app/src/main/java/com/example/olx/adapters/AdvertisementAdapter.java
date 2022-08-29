@@ -102,6 +102,9 @@ public class AdvertisementAdapter extends RecyclerView.Adapter {
         });
     }
 
+
+
+
     @Override
     public int getItemCount() {
         return arrData.size();

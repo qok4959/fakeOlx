@@ -23,4 +23,6 @@ public class Favorite extends AppCompatActivity {
                     .commit();
         }
     }
+
+    //@add favorite view
 }

@@ -6,6 +6,8 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.1324958123953099" />
         <entry key="app/src/main/res/drawable-anydpi/add2.xml" value="0.2825" />
         <entry key="app/src/main/res/drawable-anydpi/arrowLeft.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-anydpi/favorite.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-anydpi/furniture.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-anydpi/home.xml" value="0.2205" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.2815" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.385" />

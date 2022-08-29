@@ -7,9 +7,40 @@ import java.util.Map;
 
 public class AdvertisementData {
 
-    public String category, description, email, location, name, phoneNumber, price, title,id,date;
+    public String category, description, email, location, name, phoneNumber, price, title, id, date;
     public ArrayList<String> links;
     AdvertisementModel model;
+
+    public AdvertisementData() {
+        model = null;
+    }
+
+    public AdvertisementData(String category, String description, String email, String location, String name, String phoneNumber, String price, String title, ArrayList<String> links, String id) {
+        this.category = category;
+        this.description = description;
+        this.email = email;
+        this.location = location;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.price = price;
+        this.title = title;
+        this.links = links;
+        this.id = id;
+        this.date = java.time.LocalDate.now().toString();
+    }
+
+    public AdvertisementData(String category, String description, String email, String location, String name, String phoneNumber, String price, String title, ArrayList<String> links) {
+        this.category = category;
+        this.description = description;
+        this.email = email;
+        this.location = location;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.price = price;
+        this.title = title;
+        this.links = links;
+        this.date = java.time.LocalDate.now().toString();
+    }
 
     public String getDate() {
         return date;
@@ -27,30 +58,12 @@ public class AdvertisementData {
         this.model = model;
     }
 
-    public AdvertisementData(){
-        model = null;
-    }
-
-    public void fetchAllData(){
+    public void fetchAllData() {
         model = new AdvertisementModel();
         model.retrieveAllData();
     }
 
-    public AdvertisementData(String category, String description, String email, String location, String name, String phoneNumber, String price, String title, ArrayList<String> links, String id) {
-        this.category = category;
-        this.description = description;
-        this.email = email;
-        this.location = location;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.price = price;
-        this.title = title;
-        this.links = links;
-        this.id = id;
-        this.date = java.time.LocalDate.now().toString();
-    }
-
-    public AdvertisementData assignData(Map<String,Object> data){
+    public AdvertisementData assignData(Map<String, Object> data) {
         AdvertisementData temp = new AdvertisementData();
 
         temp.setCategory(data.getOrDefault("category", "default").toString());
@@ -81,11 +94,11 @@ public class AdvertisementData {
 //        return this;
     }
 
-    public Double getPriceDouble(){
+    public Double getPriceDouble() {
         return Double.parseDouble(price);
     }
 
-    public void setPriceDouble(Double pr){
+    public void setPriceDouble(Double pr) {
         price = pr.toString();
     }
 

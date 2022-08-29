@@ -43,7 +43,7 @@ public class Edit extends AppCompatActivity {
         buttonChangePswd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(emailValidation()){
+                if (emailValidation()) {
                     mAuth.sendPasswordResetEmail(email);
                     Toast.makeText(getApplicationContext(), "email with password reset form has been sent", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -67,7 +67,7 @@ public class Edit extends AppCompatActivity {
             return false;
         }
 
-        if (!email.equals(mAuth.getCurrentUser().getEmail())){
+        if (!email.equals(mAuth.getCurrentUser().getEmail())) {
             editTxtEmail.setError("email is different than logged in user");
             editTxtEmail.requestFocus();
             return false;

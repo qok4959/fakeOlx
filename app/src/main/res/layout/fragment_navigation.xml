@@ -23,11 +23,11 @@
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
-        app:tint="@color/fourthColor"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
-        app:srcCompat="@drawable/home" />
+        app:srcCompat="@drawable/home"
+        app:tint="@color/fourthColor" />
 
     <ImageView
         android:id="@+id/imgViewFavorite"
@@ -35,28 +35,28 @@
         android:layout_height="40dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="0dp"
-        app:tint="@color/fourthColor"
         app:layout_constraintStart_toEndOf="@+id/imgViewHome"
         app:layout_constraintTop_toTopOf="@+id/imgViewHome"
-        app:srcCompat="@drawable/favorite" />
+        app:srcCompat="@drawable/favorite"
+        app:tint="@color/fourthColor" />
 
     <ImageView
         android:id="@+id/imgViewProfile"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="52dp"
-        app:tint="@color/fourthColor"
         app:layout_constraintStart_toEndOf="@+id/imgViewAdd"
         app:layout_constraintTop_toTopOf="@+id/imgViewAdd"
-        app:srcCompat="@drawable/profile" />
+        app:srcCompat="@drawable/profile"
+        app:tint="@color/fourthColor" />
 
     <ImageView
         android:id="@+id/imgViewAdd"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginStart="52dp"
-        app:tint="@color/fourthColor"
         app:layout_constraintStart_toEndOf="@+id/imgViewFavorite"
         app:layout_constraintTop_toTopOf="@+id/imgViewFavorite"
-        app:srcCompat="@drawable/add2" />
+        app:srcCompat="@drawable/add2"
+        app:tint="@color/fourthColor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

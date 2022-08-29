@@ -2,6 +2,7 @@ package com.example.olx.advertisement;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.olx.R;
 import com.example.olx.fragments.FragmentNavigation;
+import com.example.olx.usefulClasses.AdvertisementData;
+import com.example.olx.usefulClasses.ObjArrConversion;
+import com.example.olx.usefulClasses.ObjConversion;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +28,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,16 +38,16 @@ import java.util.Map;
 
 public class EditAdvertisement extends AppCompatActivity {
 
-
+    public ObjConversion androidPacket;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     Button btnAddAdvertisement;
     EditText title, description, name, phoneNumber, price;
+    TextView txtViewHeader;
     ImageView img;
     String strTitle, strDescription, strName, strPhoneNumber, strPrice;
     Spinner dropdownCategories, dropdownLocations;
     String date;
-
     Map<String, Object> advertisement;
     ArrayList<String> imgLinks;
 
@@ -69,11 +75,16 @@ public class EditAdvertisement extends AppCompatActivity {
         price = findViewById(R.id.editTxtPrice);
         dropdownCategories = findViewById(R.id.spinnerCategories);
         dropdownLocations = findViewById(R.id.spinnerLocation);
+        txtViewHeader = findViewById(R.id.textView12);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            imgLinks=extras.getStringArrayList("list");
-        }
+        txtViewHeader.setText("Edit advertisement");
+        btnAddAdvertisement.setText("Edit");
+
+
+//        Bundle extras = getIntent().getExtras();
+////        if (extras != null) {
+////            imgLinks = extras.getStringArrayList("list");
+////        }
 
 
         db = FirebaseFirestore.getInstance();
@@ -81,7 +92,7 @@ public class EditAdvertisement extends AppCompatActivity {
 
 
         String[] categories = new String[]{"Automotive", "Electronics", "Furniture", "Services", "Jobs", "Fashion", "Music", "Real estate"};
-        String[] locations = new String[]{"dolnośląskie","kujawsko-pomorskie","lubelskie","lubuskie","łódzkie","małopolskie","mazowieckie","opolskie","podkarpackie","podlaskie","pomorskie","śląskie","świętokrzyskie","warmińsko-mazurskie","wielkopolskie","zachodniopomorskie"};
+        String[] locations = new String[]{"dolnośląskie", "kujawsko-pomorskie", "lubelskie", "lubuskie", "łódzkie", "małopolskie", "mazowieckie", "opolskie", "podkarpackie", "podlaskie", "pomorskie", "śląskie", "świętokrzyskie", "warmińsko-mazurskie", "wielkopolskie", "zachodniopomorskie"};
 
         ArrayAdapter<String> adapterCategories = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
         dropdownCategories.setAdapter(adapterCategories);
@@ -91,12 +102,48 @@ public class EditAdvertisement extends AppCompatActivity {
         dropdownLocations.setAdapter(adapterLocations);
 
 
+//        androidPacket = new ObjConversion();
+        Bundle bundle = getIntent().getExtras();
+        String objAsJson = bundle.getString("my_obj");
+        androidPacket = ObjConversion.fromJson(objAsJson);
+
+
+        int indexCategory = Arrays.asList(categories).indexOf(androidPacket.data.getCategory());
+        int indexLocation = Arrays.asList(locations).indexOf(androidPacket.data.getLocation());
+
+        title.setText(androidPacket.data.getTitle());
+        description.setText(androidPacket.data.getDescription());
+        name.setText(androidPacket.data.getName());
+        phoneNumber.setText(androidPacket.data.getPhoneNumber());
+        price.setText(androidPacket.data.getPrice());
+        dropdownCategories.setSelection(indexCategory);
+        dropdownLocations.setSelection(indexLocation);
+        imgLinks = androidPacket.data.getLinks();
+
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EditAdvertisement.this, AddImage.class);
-                startActivity(intent);
+
+                strTitle = title.getText().toString().trim().toLowerCase();
+                strDescription = description.getText().toString().trim().toLowerCase();
+                strName = name.getText().toString().trim().toLowerCase();
+                strPhoneNumber = phoneNumber.getText().toString().trim().toLowerCase();
+                strPrice = price.getText().toString().trim();
+
+                androidPacket.data.setTitle(strTitle);
+                androidPacket.data.setDescription(strDescription);
+                androidPacket.data.setName((strName));
+                androidPacket.data.setPhoneNumber(strPhoneNumber);
+                androidPacket.data.setPrice(strPrice);
+                androidPacket.data.setLocation(dropdownLocations.getSelectedItem().toString());
+                androidPacket.data.setCategory(dropdownCategories.getSelectedItem().toString());
+
+                Intent i = new Intent(EditAdvertisement.this, AddImage.class);
+                ObjConversion androidPacket2 = new ObjConversion(androidPacket.data);
+                String objAsJson = androidPacket2.toJson();
+                i.putExtra("my_obj", objAsJson);
+                ActivityCompat.startActivityForResult(EditAdvertisement.this, i, 0, null);
             }
         });
 
@@ -104,10 +151,10 @@ public class EditAdvertisement extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("logging_status", "btnAddAdvertisement.setOnClickListener");
-                if (validation()){
+                if (validation()) {
                     saveToDb();
                     Toast.makeText(getApplicationContext(), "Advertisement has been added", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(EditAdvertisement    .this, YourAdvertisements.class);
+                    Intent intent = new Intent(EditAdvertisement.this, YourAdvertisements.class);
                     startActivity(intent);
                 }
             }
@@ -115,7 +162,7 @@ public class EditAdvertisement extends AppCompatActivity {
     }
 
 
-    public boolean validation(){
+    public boolean validation() {
 
         strTitle = title.getText().toString().trim().toLowerCase();
         strDescription = description.getText().toString().trim().toLowerCase();
@@ -128,27 +175,19 @@ public class EditAdvertisement extends AppCompatActivity {
             name.setError("name. cannot be empty");
             name.requestFocus();
             return false;
-        }
-
-        else if (strTitle.isEmpty()) {
+        } else if (strTitle.isEmpty()) {
             title.setError("title. cannot be empty");
             title.requestFocus();
             return false;
-        }
-
-        else if (strDescription.isEmpty()) {
+        } else if (strDescription.isEmpty()) {
             description.setError("description. cannot be empty");
             description.requestFocus();
             return false;
-        }
-
-        else if (strPhoneNumber.isEmpty()) {
+        } else if (strPhoneNumber.isEmpty()) {
             phoneNumber.setError("phoneNumber cannot be empty");
             phoneNumber.requestFocus();
             return false;
-        }
-
-        else if (strPrice.isEmpty()) {
+        } else if (strPrice.isEmpty()) {
             price.setError("phoneNumber cannot be empty");
             price.requestFocus();
             return false;
@@ -158,7 +197,7 @@ public class EditAdvertisement extends AppCompatActivity {
     }
 
 
-    public void saveToDb(){
+    public void saveToDb() {
 
         advertisement.put("name", strName);
         advertisement.put("phoneNumber", strPhoneNumber);
@@ -171,23 +210,8 @@ public class EditAdvertisement extends AppCompatActivity {
         advertisement.put("location", dropdownLocations.getSelectedItem().toString());
         advertisement.put("date", this.date = java.time.LocalDate.now().toString());
 
-
-
-        // Add a new document with a generated ID
         db.collection("advertisements")
-                .add(advertisement)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("addingDocument:", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("addingDocument:", "Error adding document", e);
-                    }
-                });
+                .document(androidPacket.data.getId()).set(advertisement);
     }
 
 }

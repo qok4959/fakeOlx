@@ -6,11 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".advertisement.Favorite">
 
-    <androidx.fragment.app.FragmentContainerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fragment_container_view"
+        android:name="com.example.olx.fragments.FragmentNavigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.example.olx.fragments.FragmentNavigation" />
+        android:layout_height="match_parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFavorite"
+        android:layout_width="409dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFilteredAdvertisementsTitle2"
+        app:layout_constraintVertical_bias="0.322" />
+
+    <TextView
+        android:id="@+id/textViewFilteredAdvertisementsTitle2"
+        android:layout_width="370dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="28dp"
+        android:text="My favorites"
+        android:textAlignment="center"
+        android:textColor="@color/secondaryColor"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewFilteredAdvertisementsInfo2"
+        android:layout_width="370dp"
+        android:layout_height="250dp"
+        android:text="There is none favorite advertisement to show!"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_container_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_container_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_container_view" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,22 +15,25 @@ import android.widget.Spinner;
 
 import com.example.olx.R;
 import com.example.olx.fragments.FragmentNavigation;
+import com.example.olx.model.UserModel;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class DetailedFilters extends AppCompatActivity {
 
     Button btnCheap, btnExpensive, btnShow;
-    String sortPrice="none";
+    String sortPrice = "none";
     EditText priceFrom, priceTo;
     String strPriceFrom, strPriceTo, strLocation;
     Spinner dropdownLocations;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +56,7 @@ public class DetailedFilters extends AppCompatActivity {
         dropdownLocations = findViewById(R.id.spinnerLocationFilters);
 
 
-        String[] locations = new String[]{"none", "dolnośląskie","kujawsko-pomorskie","lubelskie","lubuskie","łódzkie","małopolskie","mazowieckie","opolskie","podkarpackie","podlaskie","pomorskie","śląskie","świętokrzyskie","warmińsko-mazurskie","wielkopolskie","zachodniopomorskie"};
+        String[] locations = new String[]{"none", "dolnośląskie", "kujawsko-pomorskie", "lubelskie", "lubuskie", "łódzkie", "małopolskie", "mazowieckie", "opolskie", "podkarpackie", "podlaskie", "pomorskie", "śląskie", "świętokrzyskie", "warmińsko-mazurskie", "wielkopolskie", "zachodniopomorskie"};
 
 
         ArrayAdapter<String> adapterLocations = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, locations);
@@ -63,26 +66,29 @@ public class DetailedFilters extends AppCompatActivity {
         String objAsJson = bundle.getString("my_obj");
         ObjArrConversion androidPacket = ObjArrConversion.fromJson(objAsJson);
 
+        UserModel tempUserModel = new UserModel();
+
+
 
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (priceFrom.getText().length()==0)
-                    strPriceFrom="0";
+                if (priceFrom.getText().length() == 0)
+                    strPriceFrom = "0";
                 else
                     strPriceFrom = priceFrom.getText().toString().toLowerCase().trim();
 
-                if (priceTo.getText().length()==0)
-                    strPriceTo="99999999";
+                if (priceTo.getText().length() == 0)
+                    strPriceTo = "99999999";
                 else
                     strPriceTo = priceTo.getText().toString().toLowerCase().trim();
 
                 if (dropdownLocations.getSelectedItem().toString().equals("none"))
-                    strLocation="none";
+                    strLocation = "none";
                 else
                     strLocation = dropdownLocations.getSelectedItem().toString();
 
-                if (Integer.valueOf(strPriceFrom)>Integer.valueOf(strPriceTo)) {
+                if (Integer.valueOf(strPriceFrom) > Integer.valueOf(strPriceTo)) {
                     priceTo.setError("max price have to be greater than min price");
                     priceTo.requestFocus();
                     return;
@@ -91,7 +97,7 @@ public class DetailedFilters extends AppCompatActivity {
 
                 ArrayList<AdvertisementData> tempList = androidPacket.data;
 
-                if (strLocation!="none"){
+                if (strLocation != "none") {
                     tempList = (ArrayList<AdvertisementData>) tempList.stream()
                             .filter(x -> x.getLocation().equals(strLocation))
                             .collect(Collectors.toList());
@@ -100,31 +106,32 @@ public class DetailedFilters extends AppCompatActivity {
                 }
 
                 tempList = (ArrayList<AdvertisementData>) tempList.stream()
-                                .filter(x-> (Integer.valueOf(x.getPrice()) >= Integer.valueOf(strPriceFrom) && Integer.valueOf(x.getPrice())<=Integer.valueOf(strPriceTo))
-                                )
-                               .collect(Collectors.toList());
+                        .filter(x -> (Integer.valueOf(x.getPrice()) >= Integer.valueOf(strPriceFrom) && Integer.valueOf(x.getPrice()) <= Integer.valueOf(strPriceTo))
+                        )
+                        .collect(Collectors.toList());
                 Log.d("afterFiltering2", String.valueOf(tempList.size()));
 
 
                 //sorting
-                if (!sortPrice.equals("none")){
+                if (!sortPrice.equals("none")) {
                     Log.d("checkPrice", "test");
                     if (sortPrice.equals("cheap")) {
                         tempList = (ArrayList<AdvertisementData>) tempList.stream()
                                 .sorted(Comparator.comparingDouble(AdvertisementData::getPriceDouble)).collect(Collectors.toList());
-                    }
-                    else{
+                    } else {
                         tempList = (ArrayList<AdvertisementData>) tempList.stream()
                                 .sorted(Comparator.comparingDouble(AdvertisementData::getPriceDouble)
-                                .reversed())
+                                        .reversed())
                                 .collect(Collectors.toList());
                     }
                 }
-                Log.d("testInputs", strPriceFrom+" "+strPriceTo + " "+strLocation+" "+sortPrice);
+                Log.d("testInputs", strPriceFrom + " " + strPriceTo + " " + strLocation + " " + sortPrice);
 
+                tempUserModel.setDb(null);
+                tempUserModel.setmAuth(null);
 
                 Intent i = new Intent(DetailedFilters.this, Filtered.class);
-                ObjArrConversion androidPacket2 = new ObjArrConversion(tempList);
+                ObjArrConversion androidPacket2 = new ObjArrConversion(tempList, tempUserModel);
                 String objAsJson = androidPacket2.toJson();
                 i.putExtra("my_obj", objAsJson);
                 startActivity(i);
@@ -134,12 +141,11 @@ public class DetailedFilters extends AppCompatActivity {
         btnCheap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (sortPrice.equals("cheap")){
-                    sortPrice="none";
+                if (sortPrice.equals("cheap")) {
+                    sortPrice = "none";
                     btnCheap.setTextColor(Color.WHITE);
-                }
-                else{
-                    sortPrice="cheap";
+                } else {
+                    sortPrice = "cheap";
                     btnCheap.setTextColor(Color.RED);
                     btnExpensive.setTextColor(Color.WHITE);
                 }
@@ -149,19 +155,17 @@ public class DetailedFilters extends AppCompatActivity {
         btnExpensive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (sortPrice.equals("expensive")){
+                if (sortPrice.equals("expensive")) {
                     sortPrice = "none";
-                btnExpensive.setTextColor(Color.WHITE);
-            }
-                    else{
-                    sortPrice="expensive";
+                    btnExpensive.setTextColor(Color.WHITE);
+                } else {
+                    sortPrice = "expensive";
                     btnCheap.setTextColor(Color.WHITE);
                     btnExpensive.setTextColor(Color.RED);
                 }
 
             }
         });
-
 
 
     }

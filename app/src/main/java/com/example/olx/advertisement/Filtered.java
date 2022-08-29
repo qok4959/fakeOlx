@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +27,7 @@ public class Filtered extends AppCompatActivity {
 
     RecyclerView recyclerView;
     TextView info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class Filtered extends AppCompatActivity {
                     .setReorderingAllowed(true)
                     .add(R.id.fragment_container_view, FragmentNavigation.class, null)
                     .commit();
-          }
+        }
 
         recyclerView = findViewById(R.id.recyclerViewFiltered);
         info = findViewById(R.id.textViewFilteredAdvertisementsInfo);
@@ -49,19 +49,16 @@ public class Filtered extends AppCompatActivity {
         ObjArrConversion androidPacket = ObjArrConversion.fromJson(objAsJson);
 
 
-
-        if (androidPacket.data.size()==0){
+        if (androidPacket.data.size() == 0) {
             info.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             info.setVisibility(View.INVISIBLE);
         }
 
 
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>)androidPacket.data, Filtered.this);
+        AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>) androidPacket.data, androidPacket.userModel, Filtered.this);
         recyclerView.setAdapter(customAdapter);
 
     }

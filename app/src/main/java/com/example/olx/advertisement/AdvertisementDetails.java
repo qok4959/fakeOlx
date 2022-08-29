@@ -20,6 +20,11 @@ public class AdvertisementDetails extends AppCompatActivity {
     RecyclerView recyclerView;
     TextView title, price, description, contactDetails, location;
 
+    public static String capitalize(String str) {
+        if (str == null || str.length() <= 1) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,24 +53,18 @@ public class AdvertisementDetails extends AppCompatActivity {
         title.setText(androidPacket.data.getTitle());
         price.setText(androidPacket.data.getPrice());
         description.setText(androidPacket.data.getDescription());
-        contactDetails.setText(capitalize(androidPacket.data.getName())+
-                " || " +androidPacket.data.getPhoneNumber()+
+        contactDetails.setText(capitalize(androidPacket.data.getName()) +
+                " || " + androidPacket.data.getPhoneNumber() +
                 " || " + androidPacket.data.getEmail());
         location.setText(androidPacket.data.getLocation());
 
         // Here you can use your Object
         Log.d("Gson", String.valueOf(androidPacket.data.getDescription()));
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        ImageAdapter customAdapter = new ImageAdapter((ArrayList<String>)androidPacket.data.links, AdvertisementDetails.this);
+        ImageAdapter customAdapter = new ImageAdapter((ArrayList<String>) androidPacket.data.links, AdvertisementDetails.this);
         recyclerView.setAdapter(customAdapter);
-    }
-
-    public static String capitalize(String str)
-    {
-        if(str == null || str.length()<=1) return str;
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
 }

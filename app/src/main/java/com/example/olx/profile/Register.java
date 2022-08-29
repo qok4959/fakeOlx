@@ -28,13 +28,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Register extends AppCompatActivity implements View.OnClickListener{
+public class Register extends AppCompatActivity implements View.OnClickListener {
 
+    String tempEmail, tempName, tempSurname, tempNumber, tempPswd2, tempPswd3;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    private EditText name, surname,email,phoneNumber,password2, password3;
+    private EditText name, surname, email, phoneNumber, password2, password3;
     private Button register;
-    String tempEmail, tempName, tempSurname, tempNumber, tempPswd2, tempPswd3;
+
+    public static String capitalize(String str) {
+        if (str == null || str.length() <= 1) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +61,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         register.setOnClickListener(this);
     }
 
-
-
-    public void saveToDb(){
+    public void saveToDb() {
         // Create a new user with a first, middle, and last name
         Map<String, Object> user = new HashMap<>();
         user.put("name", capitalize(tempName.toLowerCase()));
@@ -83,17 +87,14 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 });
     }
 
-
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.registerUser:
                 registerUser();
                 break;
         }
     }
-
-
 
     public void registerUser() {
         tempEmail = email.getText().toString().trim();
@@ -170,14 +171,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 });
     }
 
-
-    void navigateToUserPanelActivity(){
+    void navigateToUserPanelActivity() {
         finish();
         Intent intent = new Intent(Register.this, UserPanel.class);
         startActivity(intent);
     }
 
-    public void testDisplay(){
+    public void testDisplay() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
@@ -187,7 +187,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             Uri photoUrl = user.getPhotoUrl();
             String num = user.getPhoneNumber();
 
-            Log.d("userData--",name+ " "+email+" "+ photoUrl+" "+num);
+            Log.d("userData--", name + " " + email + " " + photoUrl + " " + num);
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
 
@@ -196,12 +196,5 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
         }
-    }
-
-
-    public static String capitalize(String str)
-    {
-        if(str == null || str.length()<=1) return str;
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 }

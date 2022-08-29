@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.olx.advertisement.Filters;
 import com.example.olx.fragments.FragmentNavigation;
+import com.example.olx.model.UserModel;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
 
@@ -19,11 +20,13 @@ import java.util.Map;
 
 public class Home extends AppCompatActivity {
 
-    ImageView automotive, electronics, furniture, services, jobs, fashion, music, realEstate;
-    String output="empty";
     final String[] list = {"Automotive", "Electronics", "Furniture", "Services", "Jobs", "Fashion", "Music", "Real estate"};
+    ImageView automotive, electronics, furniture, services, jobs, fashion, music, realEstate;
+    String output = "empty";
     AdvertisementData data;
     ArrayList<AdvertisementData> dataList;
+    UserModel userModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,7 @@ public class Home extends AppCompatActivity {
         data = new AdvertisementData();
         data.fetchAllData();
         dataList = new ArrayList<AdvertisementData>();
-
+        userModel = new UserModel();
 
 
         automotive = findViewById(R.id.imageViewAutomotive);
@@ -56,40 +59,40 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("clicked?", String.valueOf(data.getModel().getAllData().size()));
-                switch(view.getId()){
+                switch (view.getId()) {
                     case R.id.imageViewAutomotive:
-                        output=list[0];
+                        output = list[0];
                         break;
                     case R.id.imageViewElectronics:
-                        output=list[1];
+                        output = list[1];
                         break;
                     case R.id.imageViewFurniture:
-                        output=list[2];
+                        output = list[2];
                         break;
                     case R.id.imageViewServices:
-                        output=list[3];
+                        output = list[3];
                         break;
                     case R.id.imageViewJobs:
-                        output=list[4];
+                        output = list[4];
                         break;
                     case R.id.imageViewFashion:
-                        output=list[5];
+                        output = list[5];
                         break;
                     case R.id.imageViewMusic:
-                        output=list[6];
+                        output = list[6];
                         break;
                     case R.id.imageViewRealEstate:
-                        output=list[7];
+                        output = list[7];
                         break;
                 }
 
                 AdvertisementData tempAd = new AdvertisementData();
-                for (Map<String, Object> i : data.getModel().getAllData()){
+                for (Map<String, Object> i : data.getModel().getAllData()) {
 
-                    String tempStr1=i.getOrDefault("category", "default").toString();
-                    if (tempStr1.equals(output)){
+                    String tempStr1 = i.getOrDefault("category", "default").toString();
+                    if (tempStr1.equals(output)) {
 //                    i.getOrDefault("category", "default").toString().equals(output)){
-                        Log.d("equation=", tempStr1+" = "+ output);
+                        Log.d("equation=", tempStr1 + " = " + output);
                         tempAd = tempAd.assignData(i);
                         dataList.add(tempAd);
                     }
@@ -97,8 +100,13 @@ public class Home extends AppCompatActivity {
                 }
 
                 Intent i = new Intent(Home.this, Filters.class);
-                ObjArrConversion androidPacket = new ObjArrConversion(dataList);
+                ObjArrConversion androidPacket = new ObjArrConversion(dataList, userModel);
                 String objAsJson = androidPacket.toJson();
+                ArrayList<Object> objectsList = new ArrayList<>();
+                objectsList.add(dataList);
+                objectsList.add(userModel);
+//                String objAsJson = androidPacket.toJson(objectsList);
+
                 i.putExtra("my_obj", objAsJson);
                 startActivity(i);
 
@@ -107,7 +115,7 @@ public class Home extends AppCompatActivity {
 //                for(AdvertisementData i  : dataList ){
 //                    Log.d("DATA_", i.getCategory());
 //                }
-                Toast.makeText(getApplicationContext(),output,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), output, Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -120,7 +128,6 @@ public class Home extends AppCompatActivity {
         music.setOnClickListener(imageListener);
         realEstate.setOnClickListener(imageListener);
     }
-
 
 
 }

@@ -21,6 +21,7 @@ public class YourAdvertisements extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +45,13 @@ public class YourAdvertisements extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                for (Map<String,Object> i : model.getAllUserData()){
+                for (Map<String, Object> i : model.getAllUserData()) {
                     advertisementData.add(new AdvertisementData().assignData(i));
                 }
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(linearLayoutManager);
-                AdvertisementAdapter customAdapter = new AdvertisementAdapter((ArrayList<AdvertisementData>)advertisementData, YourAdvertisements.this);
+                AdvertisementAdapter customAdapter = new AdvertisementAdapter((ArrayList<AdvertisementData>) advertisementData, YourAdvertisements.this);
                 recyclerView.setAdapter(customAdapter);
 
                 buttonTestAdvertisement.setVisibility(View.GONE);

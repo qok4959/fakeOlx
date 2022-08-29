@@ -15,12 +15,14 @@ import android.widget.Spinner;
 
 import com.example.olx.R;
 import com.example.olx.fragments.FragmentNavigation;
+import com.example.olx.model.UserModel;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -63,6 +65,9 @@ public class DetailedFilters extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String objAsJson = bundle.getString("my_obj");
         ObjArrConversion androidPacket = ObjArrConversion.fromJson(objAsJson);
+
+        UserModel tempUserModel = new UserModel();
+
 
 
         btnShow.setOnClickListener(new View.OnClickListener() {
@@ -122,9 +127,11 @@ public class DetailedFilters extends AppCompatActivity {
                 }
                 Log.d("testInputs", strPriceFrom + " " + strPriceTo + " " + strLocation + " " + sortPrice);
 
+                tempUserModel.setDb(null);
+                tempUserModel.setmAuth(null);
 
                 Intent i = new Intent(DetailedFilters.this, Filtered.class);
-                ObjArrConversion androidPacket2 = new ObjArrConversion(tempList);
+                ObjArrConversion androidPacket2 = new ObjArrConversion(tempList, tempUserModel);
                 String objAsJson = androidPacket2.toJson();
                 i.putExtra("my_obj", objAsJson);
                 startActivity(i);

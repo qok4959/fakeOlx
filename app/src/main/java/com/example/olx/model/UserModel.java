@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.olx.usefulClasses.AdvertisementData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,15 +15,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserModel {
 
-    FirebaseFirestore db;
+    public FirebaseFirestore db;
     String TAG = "retrieving user data";
     FirebaseAuth mAuth;
-    String email, name, phoneNumber, surname,id;
+    String email = "", name = "", phoneNumber = "", surname = "", id = "";
     ArrayList<String> favorites;
 
     public UserModel() {
@@ -30,6 +32,22 @@ public class UserModel {
         mAuth = FirebaseAuth.getInstance();
         favorites = new ArrayList<String>();
         retrieveAllData();
+    }
+
+    public FirebaseFirestore getDb() {
+        return db;
+    }
+
+    public void setDb(FirebaseFirestore db) {
+        this.db = db;
+    }
+
+    public FirebaseAuth getmAuth() {
+        return mAuth;
+    }
+
+    public void setmAuth(FirebaseAuth mAuth) {
+        this.mAuth = mAuth;
     }
 
 
@@ -56,6 +74,8 @@ public class UserModel {
                                 surname = tempHashMap.getOrDefault("surname", "default_surname").toString();
                                 favorites = (ArrayList<String>) tempHashMap.getOrDefault("favorites", emptyArr);
                                 id = tempHashMap.getOrDefault("id", "default_id").toString();
+
+                                Log.d("favorites_array", String.valueOf(favorites.size()));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -64,19 +84,18 @@ public class UserModel {
                 });
     }
 
-    public void toggleFavorite(String idAdvertisement){
+    public void toggleFavorite(String idAdvertisement) {
 
         ArrayList<String> tempList = new ArrayList();
-        Optional option = favorites.stream().filter(x->x.equals(idAdvertisement)).findAny();
+        Optional option = favorites.stream().filter(x -> x.equals(idAdvertisement)).findAny();
         Log.d("option", option.toString());
-        if (option.isPresent()){
+        if (option.isPresent()) {
             tempList = (ArrayList<String>) favorites.stream()
-                    .filter(x-> !x.equals(idAdvertisement))
+                    .filter(x -> !x.equals(idAdvertisement))
                     .collect(Collectors.toList());
 
-            favorites=tempList;
-        }
-        else{
+            favorites = tempList;
+        } else {
             favorites.add(idAdvertisement);
         }
 

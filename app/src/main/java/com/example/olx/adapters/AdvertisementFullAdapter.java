@@ -4,10 +4,8 @@ package com.example.olx.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -27,36 +22,42 @@ import com.example.olx.advertisement.AdvertisementDetails;
 import com.example.olx.model.UserModel;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjConversion;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class AdvertisementFullAdapter extends RecyclerView.Adapter {
 
+    public UserModel userModel;
     ArrayList<AdvertisementData> arrData;
     Context context;
-    public UserModel userModel;
 
+
+    public AdvertisementFullAdapter(ArrayList<AdvertisementData> arrData2, UserModel uModel, Context context) {
+        arrData = arrData2;
+        userModel = uModel;
+        this.context = context;
+    }
 
     public AdvertisementFullAdapter(ArrayList<AdvertisementData> arrData2, Context context) {
         arrData = arrData2;
+        UserModel userModel= new UserModel();
         this.context = context;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("invokeTest", "onCreateViewHolder");
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_advertisement_full, parent, false);
         AdvertisementFullAdapter.ViewHolder viewHolder = new AdvertisementFullAdapter.ViewHolder(v);
-        userModel = new UserModel();
         return viewHolder;
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
+        Log.d("invokeTest", "onBindViewHolder");
 
         AdvertisementFullAdapter.ViewHolder myViewHolder = (AdvertisementFullAdapter.ViewHolder) holder;
         myViewHolder.title.setText(arrData.get(position).getDescription());
@@ -71,8 +72,21 @@ public class AdvertisementFullAdapter extends RecyclerView.Adapter {
         Glide.with(context).load(arrData.get(position).getLinks().get(0)).into(myViewHolder.img);
 //        myViewHolder.itemView.set
 
-        //@TODO change color or toggle
-        myViewHolder.imgFavorite.setColorFilter(context.getResources().getColor(R.color.grey), PorterDuff.Mode.SRC_IN);
+
+//        Log.d("arraySize", String.valueOf(userModel.getFavorites().size()));
+
+        Optional tempFavorites = userModel.getFavorites()
+                .stream()
+                .filter(x -> {
+                    Log.d("equality", x + "==" + arrData.get(position).getId());
+                    return x.equals(arrData.get(position).getId());
+                })
+                .findAny();
+
+        if (tempFavorites.isPresent())
+            myViewHolder.imgFavorite.setColorFilter(context.getResources().getColor(R.color.red), PorterDuff.Mode.SRC_IN);
+        else
+            myViewHolder.imgFavorite.setColorFilter(context.getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -94,13 +108,23 @@ public class AdvertisementFullAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
 
-                ((ImageView) v).setColorFilter(context.getResources().getColor(R.color.red), PorterDuff.Mode.SRC_IN);
 
+                Optional tempFavorites = userModel.getFavorites()
+                        .stream()
+                        .filter(x -> {
+                            Log.d("equality", x + "==" + arrData.get(position).getId());
+                            return x.equals(arrData.get(position).getId());
+                        })
+                        .findAny();
+
+                if (tempFavorites.isPresent())
+                    myViewHolder.imgFavorite.setColorFilter(context.getResources().getColor(R.color.black), PorterDuff.Mode.SRC_IN);
+                else
+                    myViewHolder.imgFavorite.setColorFilter(context.getResources().getColor(R.color.red), PorterDuff.Mode.SRC_IN);
 
                 userModel.toggleFavorite(arrData.get(position).id);
 
-                Toast.makeText(context,"favorite clicked", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(context, "favorite clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.olx.advertisement.Filters;
 import com.example.olx.fragments.FragmentNavigation;
+import com.example.olx.model.UserModel;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
 
@@ -24,6 +25,7 @@ public class Home extends AppCompatActivity {
     String output = "empty";
     AdvertisementData data;
     ArrayList<AdvertisementData> dataList;
+    UserModel userModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class Home extends AppCompatActivity {
         data = new AdvertisementData();
         data.fetchAllData();
         dataList = new ArrayList<AdvertisementData>();
+        userModel = new UserModel();
 
 
         automotive = findViewById(R.id.imageViewAutomotive);
@@ -97,8 +100,13 @@ public class Home extends AppCompatActivity {
                 }
 
                 Intent i = new Intent(Home.this, Filters.class);
-                ObjArrConversion androidPacket = new ObjArrConversion(dataList);
+                ObjArrConversion androidPacket = new ObjArrConversion(dataList, userModel);
                 String objAsJson = androidPacket.toJson();
+                ArrayList<Object> objectsList = new ArrayList<>();
+                objectsList.add(dataList);
+                objectsList.add(userModel);
+//                String objAsJson = androidPacket.toJson(objectsList);
+
                 i.putExtra("my_obj", objAsJson);
                 startActivity(i);
 

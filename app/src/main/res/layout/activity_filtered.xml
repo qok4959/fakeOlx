@@ -7,11 +7,12 @@
     tools:context=".advertisement.Filtered">
 
 
-    <androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view"
         android:name="com.example.olx.fragments.FragmentNavigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
     <androidx.recyclerview.widget.RecyclerView

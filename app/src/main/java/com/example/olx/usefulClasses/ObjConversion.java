@@ -1,5 +1,6 @@
 package com.example.olx.usefulClasses;
 
+import com.example.olx.model.UserModel;
 import com.google.gson.Gson;
 
 public class ObjConversion {
@@ -15,6 +16,7 @@ public class ObjConversion {
     public ObjConversion(AdvertisementData cName) {
         data = cName;
     }
+
     // other fields ....
 
     public static ObjConversion fromJson(String json) {

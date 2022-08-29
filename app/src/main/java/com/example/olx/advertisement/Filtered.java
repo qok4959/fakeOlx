@@ -58,7 +58,7 @@ public class Filtered extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>) androidPacket.data, Filtered.this);
+        AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>) androidPacket.data, androidPacket.userModel, Filtered.this);
         recyclerView.setAdapter(customAdapter);
 
     }

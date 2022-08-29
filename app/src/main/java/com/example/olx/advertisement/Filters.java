@@ -9,17 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.olx.Home;
 import com.example.olx.R;
-import com.example.olx.adapters.AdvertisementAdapter;
 import com.example.olx.adapters.AdvertisementFullAdapter;
 import com.example.olx.fragments.FragmentNavigation;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
-import com.example.olx.usefulClasses.ObjConversion;
 
 import java.util.ArrayList;
 
@@ -57,7 +53,7 @@ public class Filters extends AppCompatActivity {
         } else {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
             recyclerView.setLayoutManager(linearLayoutManager);
-            AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>) androidPacket.data, Filters.this);
+            AdvertisementFullAdapter customAdapter = new AdvertisementFullAdapter((ArrayList<AdvertisementData>) androidPacket.data,androidPacket.userModel, Filters.this);
             recyclerView.setAdapter(customAdapter);
         }
 

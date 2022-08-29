@@ -35,6 +35,22 @@ public class AdvertisementModel {
         retrieveDataLoggedInUser();
     }
 
+    public FirebaseFirestore getDb() {
+        return db;
+    }
+
+    public void setDb(FirebaseFirestore db) {
+        this.db = db;
+    }
+
+    public FirebaseAuth getmAuth() {
+        return mAuth;
+    }
+
+    public void setmAuth(FirebaseAuth mAuth) {
+        this.mAuth = mAuth;
+    }
+
     public ArrayList<Map<String, Object>> getAllData() {
         return allData;
     }

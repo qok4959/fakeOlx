@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/layout/activity_add_advertisement.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_add_image.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_advanced_filters.xml" value="0.2759259259259259" />
-        <entry key="app/src/main/res/layout/activity_advertisement_details.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_advertisement_details.xml" value="0.3856812933025404" />
         <entry key="app/src/main/res/layout/activity_advertisements_filtered.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/activity_detailed_filters.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_edit.xml" value="0.264" />
@@ -25,12 +25,12 @@
         <entry key="app/src/main/res/layout/activity_filtered_advertisements.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/activity_filters.xml" value="0.2222222222222222" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.32175925925925924" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_popup_image2.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.4" />
-        <entry key="app/src/main/res/layout/activity_user_panel.xml" value="0.1736111111111111" />
+        <entry key="app/src/main/res/layout/activity_user_panel.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_your_avertisements.xml" value="0.1" />
         <entry key="app/src/main/res/layout/each_advertisement.xml" value="0.31927083333333334" />
         <entry key="app/src/main/res/layout/fragment_bottom_navigation.xml" value="0.2722222222222222" />

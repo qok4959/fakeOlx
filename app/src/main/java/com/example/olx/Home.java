@@ -1,5 +1,6 @@
 package com.example.olx;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,9 +15,20 @@ import com.example.olx.fragments.FragmentNavigation;
 import com.example.olx.model.UserModel;
 import com.example.olx.usefulClasses.AdvertisementData;
 import com.example.olx.usefulClasses.ObjArrConversion;
+import com.example.olx.usefulClasses.ObjConversion;
+import com.example.olx.usefulClasses.TestObjConversion;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Home extends AppCompatActivity {
 
@@ -32,12 +44,14 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
                     .add(R.id.fragment_container_view, FragmentNavigation.class, null)
                     .commit();
         }
+
 
         data = new AdvertisementData();
         data.fetchAllData();
@@ -128,6 +142,4 @@ public class Home extends AppCompatActivity {
         music.setOnClickListener(imageListener);
         realEstate.setOnClickListener(imageListener);
     }
-
-
 }

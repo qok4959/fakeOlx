@@ -32,10 +32,10 @@
 
     <ImageView
         android:id="@+id/imageViewAutomotive"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
         android:padding="10dp"
@@ -45,9 +45,9 @@
 
     <ImageView
         android:id="@+id/imageViewElectronics"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="80dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
@@ -58,9 +58,9 @@
 
     <ImageView
         android:id="@+id/imageViewFurniture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
         android:padding="10dp"
@@ -70,9 +70,9 @@
 
     <ImageView
         android:id="@+id/imageViewServices"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
         android:padding="10dp"
@@ -83,9 +83,9 @@
 
     <ImageView
         android:id="@+id/imageViewJobs"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
         android:padding="10dp"
@@ -95,9 +95,9 @@
 
     <ImageView
         android:id="@+id/imageViewFashion"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
         android:padding="10dp"
@@ -107,9 +107,9 @@
 
     <ImageView
         android:id="@+id/imageViewMusic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/circle_button"
         android:backgroundTint="@color/thirdColor"
         app:layout_constraintStart_toStartOf="@+id/imageViewFurniture"
@@ -118,10 +118,10 @@
 
     <ImageView
         android:id="@+id/imageViewRealEstate"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/image_circle"
         android:backgroundTint="@color/thirdColor"
         android:padding="13dp"
@@ -129,5 +129,110 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewServices"
         app:srcCompat="@drawable/real_estate" />
 
+    <TextView
+        android:id="@+id/textViewAutomotive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Automotive"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewAutomotive"
+        app:layout_constraintStart_toStartOf="@+id/imageViewAutomotive"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAutomotive" />
+
+    <TextView
+        android:id="@+id/textViewElectronics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Electronics"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewElectronics"
+        app:layout_constraintStart_toStartOf="@+id/imageViewElectronics"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewElectronics" />
+
+
+    <TextView
+        android:id="@+id/textViewServices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Services"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewServices"
+        app:layout_constraintStart_toStartOf="@+id/imageViewServices"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewServices" />
+
+    <TextView
+        android:id="@+id/textViewFurniture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Furniture"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewFurniture"
+        app:layout_constraintStart_toStartOf="@+id/imageViewFurniture"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFurniture" />
+
+    <TextView
+        android:id="@+id/textViewRealEstate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Real estate"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewRealEstate"
+        app:layout_constraintStart_toStartOf="@+id/imageViewRealEstate"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewRealEstate"/>
+
+    <TextView
+        android:id="@+id/textViewMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Music"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewMusic"
+        app:layout_constraintStart_toStartOf="@+id/imageViewMusic"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewMusic" />
+
+
+    <TextView
+        android:id="@+id/textViewFashion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Fashion"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewFashion"
+        app:layout_constraintStart_toStartOf="@+id/imageViewFashion"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFashion" />
+
+    <TextView
+        android:id="@+id/textViewJobs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Jobs"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewJobs"
+        app:layout_constraintStart_toStartOf="@+id/imageViewJobs"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewJobs" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

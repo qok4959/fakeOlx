@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.olx.MainActivity;
 import com.example.olx.R;
 import com.example.olx.advertisement.AddAdvertisement;
@@ -28,6 +30,7 @@ public class UserPanel extends AppCompatActivity {
     final String TAG = "DB_LOG:";
     Button btnAddAdvertisement, btnYourAdvertisement, btnLogout, btnEditProfile;
     TextView nameTxtView;
+    ImageView img;
     FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
@@ -49,6 +52,10 @@ public class UserPanel extends AppCompatActivity {
         btnYourAdvertisement = findViewById(R.id.btnMyAdvertisements);
         btnLogout = findViewById(R.id.btnLogout);
         btnEditProfile = findViewById(R.id.btnEditProfile);
+        img = findViewById(R.id.imageView);
+
+        Glide.with(getApplicationContext()).load("https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528").into(img);
+
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();

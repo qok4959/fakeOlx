@@ -20,17 +20,27 @@ import com.example.olx.advertisement.AdvertisementDetails;
 import com.example.olx.advertisement.YourAdvertisements;
 import com.example.olx.profile.Register;
 import com.example.olx.profile.UserPanel;
+import com.example.olx.usefulClasses.TestObjConversion;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView googleBtn;
     FirebaseAuth mAuth;
     private TextView register, forgotPassword;
-
+//    https://i1.sndcdn.com/artworks-000502755237-wcaonb-t500x500.jpg
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+//        try {
+////            saveToDb();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,3 +222,42 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 }
+
+
+//    public void saveToDb() throws IOException {
+//
+////        HashMap<String, Object> advertisement = new HashMap<>();
+////
+////
+////        String out = "{\"map\":[{\"date\":\"2022-08-30\",\"phoneNumber\":\"3213123213\",\"price\":\"80\",\"name\":\"artur\",\"description\":\"rekawice jak nowe\",\"links\":[\"https://a.allegroimg.com/original/112575/c2595eb244e29ccdae1b3de432a0/Rekawice-bokserskie-boks-treningowe-Allright-8oz\"],\"location\":\"łódzkie\",\"title\":\"rekawice bokserskie\",\"category\":\"Fashion\",\"email\":\"szpila@o2.pl\"},{\"date\":\"2022-08-30\",\"phoneNumber\":\"3213123213\",\"price\":\"150\",\"name\":\"artur\",\"description\":\"spodenki bokserskie nowe\",\"links\":[\"https://boks-sklep.pl/environment/cache/images/500_500_productGfx_5178/BSE-3570-green-hill-elite-red-1.jpg\",\"https://www.skilspo.com/2688-big_default/spodenki-bokserskie-elite-usa-czerwony-bialy-niebieski-venum.jpg\",\"https://a.allegroimg.com/original/1120a3/1a233f89458a9a94ba99bc30a269/Spodenki-Bokserskie-BENLEE-Rocky-Marciano-UNI-THAI\"],\"location\":\"łódzkie\",\"title\":\"spodenki bokserskie\",\"category\":\"Fashion\",\"email\":\"szpila@o2.pl\"},{\"date\":\"2022-08-30\",\"phoneNumber\":\"3213123213\",\"price\":\"80\",\"name\":\"artur\",\"description\":\"buty jak nowe\",\"links\":[\"https://dobrekimona.pl/userdata/public/gfx/28079.jpg\",\"https://static2.leone.pl/pol_pl_Leone1947-buty-bokserskie-VINTAGE-CL186-1667_6.jpg\"],\"location\":\"łódzkie\",\"title\":\"buty bokserskie\",\"category\":\"Fashion\",\"email\":\"szpila@o2.pl\"}]}";
+////
+////
+////        Log.d("testJSON_", out);
+//////        Bundle bundle = getIntent().getExtras();
+//////        String objAsJson = bundle.getString("my_obj");
+////        TestObjConversion androidPacket = TestObjConversion.fromJson(out);
+////
+////
+//////        TestObjConversion conv = new TestObjConversion();
+//////        conv.;
+////
+////
+////        FirebaseFirestore db = FirebaseFirestore.getInstance();
+////        // Add a new document with a generated ID
+////        db.collection("advertisements")
+////                .add(androidPacket.map.get(2))
+////                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+////                    @Override
+////                    public void onSuccess(DocumentReference documentReference) {
+////                        Log.d("addingDocument:", "DocumentSnapshot added with ID: " + documentReference.getId());
+////                    }
+////                })
+////                .addOnFailureListener(new OnFailureListener() {
+////                    @Override
+////                    public void onFailure(@NonNull Exception e) {
+////                        Log.w("addingDocument:", "Error adding document", e);
+////                    }
+////                });
+////    }
+//
+//}

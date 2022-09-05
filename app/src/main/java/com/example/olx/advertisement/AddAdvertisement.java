@@ -18,7 +18,9 @@ import android.widget.Toast;
 import com.example.olx.R;
 import com.example.olx.fragments.FragmentNavigation;
 import com.example.olx.usefulClasses.AdvertisementData;
+import com.example.olx.usefulClasses.ObjArrConversion;
 import com.example.olx.usefulClasses.ObjConversion;
+import com.example.olx.usefulClasses.TestObjConversion;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -213,6 +215,15 @@ public class AddAdvertisement extends AppCompatActivity {
         advertisement.put("location", dropdownLocations.getSelectedItem().toString());
         advertisement.put("date", this.date = java.time.LocalDate.now().toString());
 
+
+        ArrayList<HashMap<String,Object>> listOfObj= new ArrayList<HashMap<String,Object>>();
+        listOfObj.add((HashMap<String, Object>) advertisement);
+        listOfObj.add((HashMap<String, Object>) advertisement);
+        listOfObj.add((HashMap<String, Object>) advertisement);
+
+        TestObjConversion conv= new TestObjConversion(listOfObj);
+        String objAsJson = conv.toJson();
+        Log.d("JSON_object", objAsJson);
 
         // Add a new document with a generated ID
         db.collection("advertisements")

@@ -52,10 +52,10 @@ public class AdvertisementDetails extends AppCompatActivity {
 
         title.setText(androidPacket.data.getTitle());
         price.setText(androidPacket.data.getPrice());
-        description.setText(androidPacket.data.getDescription());
-        contactDetails.setText(capitalize(androidPacket.data.getName()) +
-                " || " + androidPacket.data.getPhoneNumber() +
-                " || " + androidPacket.data.getEmail());
+        description.setText(""+androidPacket.data.getDescription());
+        contactDetails.setText("Name: "+capitalize(androidPacket.data.getName()) +
+                "\n"+"Phone number: " + androidPacket.data.getPhoneNumber() +
+                "\n"+"Email: "+ androidPacket.data.getEmail());
         location.setText(androidPacket.data.getLocation());
 
         // Here you can use your Object
